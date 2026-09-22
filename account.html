@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rosie Shop | My Account</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    color:#5a3947;
+}
+
+header{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    padding:25px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:25px;
+}
+
+header p{
+    font-size:12px;
+    margin-top:4px;
+}
+
+nav{
+    background:white;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+nav a{
+    text-decoration:none;
+    color:#d95b87;
+    font-size:11px;
+    padding:7px 10px;
+    border-radius:10px;
+}
+
+nav a:hover{
+    background:#fff0f6;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.profile{
+    text-align:center;
+}
+
+.avatar{
+    width:70px;
+    height:70px;
+    margin:auto;
+    border-radius:50%;
+    background:#ffe1ec;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+}
+
+.profile h2{
+    margin-top:10px;
+    color:#d95b87;
+    font-size:19px;
+}
+
+.profile p{
+    font-size:12px;
+    color:#8d6876;
+}
+
+.section-title{
+    color:#d95b87;
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.balance{
+    text-align:center;
+    background:linear-gradient(135deg,#fff0f6,#ffe2ed);
+    border-radius:15px;
+    padding:20px;
+}
+
+.balance-label{
+    font-size:12px;
+}
+
+.balance-amount{
+    font-size:30px;
+    font-weight:700;
+    color:#d95b87;
+    margin-top:5px;
+}
+
+button{
+    border:none;
+    border-radius:12px;
+    padding:11px 14px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
+}
+
+.primary-btn{
+    width:100%;
+    margin-top:12px;
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+}
+
+.vip-box{
+    background:#fff7fa;
+    border:1px solid #f5c5d7;
+    border-radius:14px;
+    padding:15px;
+}
+
+.vip-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.vip-label{
+    font-size:12px;
+    color:#8d6876;
+}
+
+.vip-status{
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.vip-none{
+    background:#eeeeee;
+    color:#777;
+}
+
+.vip-pending{
+    background:#fff1c9;
+    color:#9a7100;
+}
+
+.vip-approved{
+    background:#dcf8e5;
+    color:#26804a;
+}
+
+.vip-rejected{
+    background:#ffe0e0;
+    color:#b83c3c;
+}
+
+.vip-info{
+    margin-top:12px;
+    font-size:11px;
+    line-height:1.7;
+    color:#8d6876;
+}
+
+.order{
+    border:1px solid #f3d2df;
+    border-radius:13px;
+    padding:13px;
+    margin-bottom:10px;
+}
+
+.order:last-child{
+    margin-bottom:0;
+}
+
+.order-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.order-id{
+    font-size:12px;
+    font-weight:700;
+    color:#d95b87;
+}
+
+.order-product{
+    font-size:12px;
+    margin-top:5px;
+}
+
+.order-date{
+    font-size:10px;
+    color:#999;
+    margin-top:4px;
+}
+
+.status{
+    padding:5px 9px;
+    border-radius:15px;
+    font-size:10px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.status-pending{
+    background:#fff1c9;
+    color:#9a7100;
+}
+
+.status-processing{
+    background:#e3efff;
+    color:#3b6ea8;
+}
+
+.status-completed{
+    background:#dcf8e5;
+    color:#26804a;
+}
+
+.status-rejected,
+.status-cancelled{
+    background:#ffe0e0;
+    color:#b83c3c;
+}
+
+.transaction{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 0;
+    border-bottom:1px solid #f5e1e8;
+}
+
+.transaction:last-child{
+    border-bottom:none;
+}
+
+.transaction-info{
+    font-size:11px;
+}
+
+.transaction-type{
+    font-weight:600;
+}
+
+.transaction-date{
+    color:#999;
+    font-size:9px;
+    margin-top:3px;
+}
+
+.amount{
+    font-size:12px;
+    font-weight:700;
+}
+
+.amount.plus{
+    color:#26804a;
+}
+
+.amount.minus{
+    color:#c94b68;
+}
+
+.empty{
+    text-align:center;
+    padding:15px;
+    font-size:12px;
+    color:#999;
+}
+
+.logout{
+    width:100%;
+    background:#ffe0e8;
+    color:#c94b68;
+}
+
+.small-note{
+    font-size:10px;
+    color:#999;
+    margin-top:8px;
+    line-height:1.6;
+}
+
+.loading{
+    text-align:center;
+    font-size:12px;
+    color:#999;
+    padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>rosie shop 🍓</h1>
+    <p>my account</p>
+</header>
+
+<nav>
+    <a href="index.html">home</a>
+    <a href="mlbb.html">mlbb</a>
+    <a href="roblox.html">roblox</a>
+    <a href="premium.html">premium</a>
+    <a href="load.html">load</a>
+    <a href="account.html">account</a>
+</nav>
+
+<div class="container">
+
+    <!-- PROFILE -->
+    <div class="card profile">
+
+        <div class="avatar">
+            🍓
+        </div>
+
+        <h2 id="userName">
+            Loading...
+        </h2>
+
+        <p id="userEmail">
+            Loading...
+        </p>
+
+    </div>
+
+
+    <!-- BERRY BALANCE -->
+    <div class="card">
+
+        <div class="balance">
+
+            <div class="balance-label">
+                🍓 Berry Balance
+            </div>
+
+            <div class="balance-amount">
+                <span id="berryBalance">0</span>
+            </div>
+
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="goToBerryPayment()"
+        >
+            🍓 Top Up Berry
+        </button>
+
+    </div>
+
+
+    <!-- VIP STATUS -->
+    <div class="card">
+
+        <h3 class="section-title">
+            🎀 Berry VIP Membership
+        </h3>
+
+        <div class="vip-box">
+
+            <div class="vip-row">
+
+                <div class="vip-label">
+                    Membership Status
+                </div>
+
+                <div
+                    id="vipStatus"
+                    class="vip-status vip-none"
+                >
+                    None
+                </div>
+
+            </div>
+
+            <div class="vip-info" id="vipInfo">
+                You are not currently a Berry VIP member.
+            </div>
+
+            <button
+                class="primary-btn"
+                onclick="location.href='membership.html'"
+            >
+                🎀 Apply for Berry VIP
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- VOUCHER -->
+    <div class="card">
+
+        <h3 class="section-title">
+            🎟 Redeem Voucher
+        </h3>
+
+        <input
+            type="text"
+            id="voucherCode"
+            placeholder="Enter voucher code"
+            style="
+                width:100%;
+                padding:12px;
+                border:1px solid #f3c3d4;
+                border-radius:12px;
+                outline:none;
+                background:#fffafd;
+                font-size:12px;
+            "
+        >
+
+        <button
+            class="primary-btn"
+            onclick="redeemVoucher()"
+        >
+            Redeem Voucher
+        </button>
+
+    </div>
+
+
+    <!-- ORDER STATUS -->
+    <div class="card">
+
+        <h3 class="section-title">
+            🛍 My Order Status
+        </h3>
+
+        <div id="orderStatusList">
+
+            <div class="loading">
+                Loading orders...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTIONS -->
+    <div class="card">
+
+        <h3 class="section-title">
+            📜 Berry Transactions
+        </h3>
+
+        <div id="transactionList">
+
+            <div class="loading">
+                Loading transactions...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOGOUT -->
+    <div class="card">
+
+        <button
+            class="logout"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+import {
+    getDatabase,
+    ref,
+    onValue,
+    get,
+    update
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyC1DTja7wun0ziVdfgNiVupf1kCpDNl8hM",
+
+    authDomain:
+        "rosie-shop.firebaseapp.com",
+
+    databaseURL:
+        "https://rosie-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+        "rosie-shop",
+
+    storageBucket:
+        "rosie-shop.firebasestorage.app",
+
+    messagingSenderId:
+        "16582833070",
+
+    appId:
+        "1:16582833070:web:70db6fdcd4a111554e8e3f",
+
+    measurementId:
+        "G-46NPDYJNES"
+};
+
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getDatabase(app);
+
+let currentUser = null;
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        alert("Please login first.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    currentUser = user;
+
+    document.getElementById("userEmail").textContent =
+        user.email || "No email";
+
+
+    await loadUserData();
+
+    loadVIPStatus();
+
+    loadOrders();
+
+    loadTransactions();
+
+});
+
+
+/* =========================
+   LOAD USER DATA
+========================= */
+
+async function loadUserData(){
+
+    if(!currentUser) return;
+
+    const userRef =
+        ref(db, `users/${currentUser.uid}`);
+
+    try{
+
+        const snapshot =
+            await get(userRef);
+
+        if(snapshot.exists()){
+
+            const data = snapshot.val();
+
+            document.getElementById("userName").textContent =
+                data.name ||
+                currentUser.displayName ||
+                "Buyer";
+
+            document.getElementById("berryBalance").textContent =
+                Number(data.berry || 0);
+
+        }else{
+
+            /*
+             * Only create the user if the
+             * record does not already exist.
+             *
+             * This prevents Berry from being
+             * accidentally reset.
+             */
+
+            const newUser = {
+
+                email:
+                    currentUser.email || "",
+
+                name:
+                    currentUser.displayName || "Buyer",
+
+                berry: 0,
+
+                vipStatus: "None"
+
+            };
+
+            await update(
+                userRef,
+                newUser
+            );
+
+            document.getElementById("userName").textContent =
+                newUser.name;
+
+            document.getElementById("berryBalance").textContent =
+                "0";
+        }
+
+    }catch(error){
+
+        console.error(
+            "User data error:",
+            error
+        );
+
+        alert(
+            "Unable to load your account data. " +
+            error.message
+        );
+    }
+
+
+    /*
+     * Keep Berry balance and profile
+     * updated automatically.
+     */
+
+    onValue(
+        userRef,
+        (snapshot) => {
+
+            if(!snapshot.exists()) return;
+
+            const data = snapshot.val();
+
+            document.getElementById("userName").textContent =
+                data.name ||
+                currentUser.displayName ||
+                "Buyer";
+
+            document.getElementById("berryBalance").textContent =
+                Number(data.berry || 0);
+
+            updateVIPDisplay(
+                data.vipStatus || "None"
+            );
+
+        },
+        (error) => {
+
+            console.error(
+                "Realtime user error:",
+                error
+            );
+
+        }
+    );
+}
+
+
+/* =========================
+   VIP STATUS
+========================= */
+
+function loadVIPStatus(){
+
+    if(!currentUser) return;
+
+    const userRef =
+        ref(db, `users/${currentUser.uid}`);
+
+    onValue(
+        userRef,
+        (snapshot) => {
+
+            if(!snapshot.exists()){
+
+                updateVIPDisplay("None");
+
+                return;
+            }
+
+            const data =
+                snapshot.val();
+
+            updateVIPDisplay(
+                data.vipStatus || "None"
+            );
+
+        },
+        (error) => {
+
+            console.error(
+                "VIP status error:",
+                error
+            );
+
+        }
+    );
+}
+
+
+function updateVIPDisplay(status){
+
+    const statusElement =
+        document.getElementById("vipStatus");
+
+    const infoElement =
+        document.getElementById("vipInfo");
+
+    if(!statusElement || !infoElement)
+        return;
+
+
+    status =
+        String(status || "None");
+
+
+    const normalized =
+        status.toLowerCase();
+
+
+    statusElement.className =
+        "vip-status";
+
+
+    if(normalized === "pending"){
+
+        statusElement.classList.add(
+            "vip-pending"
+        );
+
+        statusElement.textContent =
+            "Pending";
+
+        infoElement.textContent =
+            "Your Berry VIP application is currently under review.";
+
+    }
+
+    else if(
+    normalized === "approved" ||
+    normalized === "active"
+){
+
+        statusElement.classList.add(
+            "vip-approved"
+        );
+
+        statusElement.textContent =
+            "Approved";
+
+        infoElement.textContent =
+            "🎀 Your Berry VIP membership has been approved!";
+
+    }
+
+    else if(normalized === "rejected"){
+
+        statusElement.classList.add(
+            "vip-rejected"
+        );
+
+        statusElement.textContent =
+            "Rejected";
+
+        infoElement.textContent =
+            "Your Berry VIP application was rejected. You may contact Rosie Shop for more information.";
+
+    }
+
+    else{
+
+        statusElement.classList.add(
+            "vip-none"
+        );
+
+        statusElement.textContent =
+            "None";
+
+        infoElement.textContent =
+            "You are not currently a Berry VIP member.";
+
+    }
+
+}
+
+
+/* =========================
+   BERRY PAYMENT
+========================= */
+
+window.goToBerryPayment = function(){
+
+    window.location.href =
+        "berry-payment.html";
+
+};
+
+
+/* =========================
+   REDEEM VOUCHER
+========================= */
+
+window.redeemVoucher = async function(){
+
+    if(!currentUser){
+
+        alert("Please login first.");
+
+        return;
+    }
+
+
+    const code =
+        document
+        .getElementById("voucherCode")
+        .value
+        .trim()
+        .toUpperCase();
+
+
+    if(!code){
+
+        alert("Please enter a voucher code.");
+
+        return;
+    }
+
+
+    try{
+
+        const voucherRef =
+            ref(db, `vouchers/${code}`);
+
+        const voucherSnapshot =
+            await get(voucherRef);
+
+
+        if(!voucherSnapshot.exists()){
+
+            alert("Invalid voucher code.");
+
+            return;
+        }
+
+
+        const voucher =
+            voucherSnapshot.val();
+
+
+        if(voucher.used){
+
+            alert("This voucher has already been used.");
+
+            return;
+        }
+
+
+        if(
+            voucher.uid &&
+            voucher.uid !== currentUser.uid
+        ){
+
+            alert("This voucher is not assigned to your account.");
+
+            return;
+        }
+
+
+        const userRef =
+            ref(db, `users/${currentUser.uid}`);
+
+        const userSnapshot =
+            await get(userRef);
+
+
+        if(!userSnapshot.exists()){
+
+            alert("Your account record was not found.");
+
+            return;
+        }
+
+
+        const userData =
+            userSnapshot.val();
+
+
+        const currentBerry =
+            Number(userData.berry || 0);
+
+
+        const voucherAmount =
+            Number(voucher.amount || 0);
+
+
+        if(voucherAmount <= 0){
+
+            alert("This voucher has an invalid Berry amount.");
+
+            return;
+        }
+
+
+        const newBerry =
+            currentBerry + voucherAmount;
+
+
+        /*
+         * Update ONLY the Berry amount.
+         * This prevents VIP status or other
+         * user information from being overwritten.
+         */
+
+        await update(
+            userRef,
+            {
+                berry: newBerry
+            }
+        );
+
+
+        await update(
+            voucherRef,
+            {
+                used: true,
+                usedBy: currentUser.uid,
+                usedAt: Date.now()
+            }
+        );
+
+
+        alert(
+            `Voucher redeemed! +${voucherAmount} Berry 🍓`
+        );
+
+
+        document.getElementById(
+            "voucherCode"
+        ).value = "";
+
+
+        loadTransactions();
+
+    }catch(error){
+
+        console.error(
+            "Voucher error:",
+            error
+        );
+
+        alert(
+            "Unable to redeem voucher. " +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =========================
+   LOAD TRANSACTIONS
+========================= */
+
+function loadTransactions(){
+
+    if(!currentUser) return;
+
+
+    const transactionRef =
+        ref(
+            db,
+            `transactions/${currentUser.uid}`
+        );
+
+
+    onValue(
+        transactionRef,
+        (snapshot) => {
+
+            const container =
+                document.getElementById(
+                    "transactionList"
+                );
+
+
+            if(!snapshot.exists()){
+
+                container.innerHTML = `
+                    <div class="empty">
+                        No Berry transactions yet.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            const transactions = [];
+
+
+            snapshot.forEach(
+                (child) => {
+
+                    transactions.push({
+
+                        id: child.key,
+
+                        ...child.val()
+
+                    });
+
+                }
+            );
+
+
+            transactions.sort(
+                (a,b) =>
+                    Number(b.createdAt || 0) -
+                    Number(a.createdAt || 0)
+            );
+
+
+            container.innerHTML = "";
+
+
+            transactions.forEach(
+                (transaction) => {
+
+                    const rawAmount =
+                        Number(
+                            transaction.amount || 0
+                        );
+
+
+                    const isMinus =
+                        rawAmount < 0 ||
+                        transaction.type === "purchase" ||
+                        transaction.type === "admin_deduct";
+
+
+                    const displayAmount =
+                        Math.abs(rawAmount);
+
+
+                    const sign =
+                        isMinus ? "-" : "+";
+
+
+                    const amountClass =
+                        isMinus ? "minus" : "plus";
+
+
+                    const date =
+                        transaction.createdAt
+                        ? new Date(
+                            transaction.createdAt
+                          ).toLocaleString()
+                        : "";
+
+
+                    const title =
+                        transaction.description ||
+                        transaction.type ||
+                        "Berry Transaction";
+
+
+                    container.innerHTML += `
+
+                        <div class="transaction">
+
+                            <div class="transaction-info">
+
+                                <div class="transaction-type">
+                                    ${escapeHTML(title)}
+                                </div>
+
+                                <div class="transaction-date">
+                                    ${escapeHTML(date)}
+                                </div>
+
+                            </div>
+
+                            <div class="amount ${amountClass}">
+                                ${sign}${displayAmount} 🍓
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        },
+        (error) => {
+
+            console.error(
+                "Transaction error:",
+                error
+            );
+
+            document.getElementById(
+                "transactionList"
+            ).innerHTML = `
+                <div class="empty">
+                    Unable to load transactions.
+                </div>
+            `;
+
+        }
+    );
+}
+
+
+/* =========================
+   LOAD ORDERS
+========================= */
+
+function loadOrders(){
+
+    if(!currentUser) return;
+
+
+    const ordersRef =
+        ref(db, "orders");
+
+
+    onValue(
+        ordersRef,
+        (snapshot) => {
+
+            const container =
+                document.getElementById(
+                    "orderStatusList"
+                );
+
+
+            if(!snapshot.exists()){
+
+                container.innerHTML = `
+                    <div class="empty">
+                        No orders found.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            const orders = [];
+
+
+            snapshot.forEach(
+                (child) => {
+
+                    const order =
+                        child.val();
+
+
+                    /*
+                     * Supports the possible UID
+                     * field names used by the shop.
+                     */
+
+                    const orderUid =
+                        order.uid ||
+                        order.buyerUid ||
+                        order.userId;
+
+
+                    if(
+                        orderUid ===
+                        currentUser.uid
+                    ){
+
+                        orders.push({
+
+                            id: child.key,
+
+                            ...order
+
+                        });
+
+                    }
+
+                }
+            );
+
+
+            if(orders.length === 0){
+
+                container.innerHTML = `
+                    <div class="empty">
+                        No orders found.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            orders.sort(
+                (a,b) =>
+                    Number(b.createdAt || 0) -
+                    Number(a.createdAt || 0)
+            );
+
+
+            container.innerHTML = "";
+
+
+            orders.forEach(
+                (order) => {
+
+                    const status =
+                        order.status ||
+                        "Pending";
+
+
+                    const statusClass =
+                        getStatusClass(status);
+
+
+                    const orderId =
+                        order.orderId ||
+                        order.id;
+
+
+                    const product =
+                        order.product ||
+                        order.category ||
+                        "Rosie Shop Order";
+
+
+                    const date =
+                        order.createdAt
+                        ? new Date(
+                            order.createdAt
+                          ).toLocaleString()
+                        : "";
+
+
+                    container.innerHTML += `
+
+                        <div class="order">
+
+                            <div class="order-top">
+
+                                <div>
+
+                                    <div class="order-id">
+                                        Order #${escapeHTML(String(orderId))}
+                                    </div>
+
+                                    <div class="order-product">
+                                        ${escapeHTML(String(product))}
+                                    </div>
+
+                                    <div class="order-date">
+                                        ${escapeHTML(date)}
+                                    </div>
+
+                                </div>
+
+                                <div class="status ${statusClass}">
+                                    ${escapeHTML(String(status))}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+        },
+        (error) => {
+
+            console.error(
+                "Order error:",
+                error
+            );
+
+            document.getElementById(
+                "orderStatusList"
+            ).innerHTML = `
+                <div class="empty">
+                    Unable to load order status.
+                </div>
+            `;
+
+        }
+    );
+}
+
+
+/* =========================
+   STATUS CLASS
+========================= */
+
+function getStatusClass(status){
+
+    const value =
+        String(status || "Pending")
+        .toLowerCase()
+        .replace(/\s+/g,"");
+
+
+    if(
+        value === "processing"
+    ){
+
+        return "status-processing";
+
+    }
+
+
+    if(
+        value === "completed" ||
+        value === "approved"
+    ){
+
+        return "status-completed";
+
+    }
+
+
+    if(
+        value === "rejected" ||
+        value === "cancelled" ||
+        value === "canceled"
+    ){
+
+        return "status-rejected";
+
+    }
+
+
+    return "status-pending";
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+window.logout = async function(){
+
+    try{
+
+        await signOut(auth);
+
+        window.location.href =
+            "login.html";
+
+    }catch(error){
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+        alert(
+            "Unable to logout. " +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>

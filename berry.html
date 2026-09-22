@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rosie Shop | Berry Payment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    color:#5a3947;
+    padding-bottom:40px;
+}
+
+header{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+header h1{
+    font-size:27px;
+    font-weight:700;
+}
+
+header p{
+    font-size:13px;
+    margin-top:4px;
+}
+
+nav{
+    background:white;
+    padding:12px 10px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+nav a{
+    text-decoration:none;
+    color:#d95b87;
+    font-size:12px;
+    font-weight:600;
+    padding:7px 10px;
+    border-radius:20px;
+}
+
+nav a:hover{
+    background:#ffe1ed;
+}
+
+.container{
+    max-width:650px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+h2{
+    color:#d95b87;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.berry-icon{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:8px;
+}
+
+.balance-box{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:15px;
+    padding:16px;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.balance-label{
+    font-size:12px;
+    color:#9b6376;
+}
+
+.balance-value{
+    color:#d94f82;
+    font-size:27px;
+    font-weight:700;
+    margin-top:3px;
+}
+
+.order-box{
+    background:#fffafd;
+    border:1px solid #f3c3d4;
+    border-radius:15px;
+    padding:15px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:10px 0;
+    border-bottom:1px solid #f5dce6;
+    font-size:13px;
+}
+
+.row:last-child{
+    border-bottom:0;
+}
+
+.label{
+    color:#9b7180;
+}
+
+.value{
+    text-align:right;
+    font-weight:600;
+    word-break:break-word;
+}
+
+.details{
+    margin-top:12px;
+    background:#fff0f6;
+    border-radius:12px;
+    padding:12px;
+    font-size:12px;
+    line-height:1.7;
+    white-space:pre-line;
+}
+
+.total-box{
+    margin-top:18px;
+    background:#ffe5ef;
+    border-radius:15px;
+    padding:16px;
+    text-align:center;
+}
+
+.total-label{
+    font-size:12px;
+    color:#9b6376;
+}
+
+.total{
+    color:#d94f82;
+    font-size:28px;
+    font-weight:700;
+    margin-top:3px;
+}
+
+.remaining-box{
+    margin-top:12px;
+    background:#fff;
+    border:1px solid #ffc9db;
+    border-radius:15px;
+    padding:14px;
+    text-align:center;
+}
+
+.remaining-label{
+    font-size:11px;
+    color:#9b7180;
+}
+
+.remaining{
+    font-size:20px;
+    font-weight:700;
+    color:#d95b87;
+    margin-top:3px;
+}
+
+.insufficient{
+    color:#d34c70;
+    font-size:12px;
+    text-align:center;
+    margin-top:12px;
+    line-height:1.6;
+}
+
+button{
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:13px;
+    margin-top:18px;
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
+.back-btn{
+    background:white;
+    color:#d95b87;
+    border:1px solid #ffc5d8;
+}
+
+.note{
+    margin-top:15px;
+    font-size:11px;
+    line-height:1.6;
+    text-align:center;
+    color:#9a7180;
+}
+
+.hidden{
+    display:none;
+}
+
+.error{
+    text-align:center;
+    background:white;
+    border:1px solid #ffc5d8;
+    border-radius:18px;
+    padding:25px 18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.error p{
+    font-size:13px;
+    line-height:1.7;
+}
+
+.success{
+    text-align:center;
+}
+
+.success-icon{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.success h2{
+    margin-bottom:10px;
+}
+
+.success p{
+    font-size:13px;
+    line-height:1.7;
+}
+
+.order-id{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:12px;
+    padding:12px;
+    margin-top:18px;
+    font-size:12px;
+    word-break:break-all;
+}
+
+.status{
+    display:inline-block;
+    margin-top:12px;
+    padding:7px 14px;
+    border-radius:20px;
+    background:#ffe5ef;
+    color:#d94f82;
+    font-size:12px;
+    font-weight:600;
+}
+
+.request-box{
+    margin-top:15px;
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:12px;
+    padding:12px;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.request-id{
+    font-weight:700;
+    color:#d94f82;
+    word-break:break-all;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>rosie shop ♡</h1>
+    <p>berry payment</p>
+</header>
+
+<nav>
+    <a href="index.html">home</a>
+    <a href="account.html">account</a>
+    <a href="mlbb.html">mlbb</a>
+    <a href="roblox.html">roblox</a>
+    <a href="gbdata.html">gb/data</a>
+    <a href="promoload.html">promo load</a>
+    <a href="premium.html">premium</a>
+</nav>
+
+<div class="container">
+
+    <!-- LOADING -->
+
+    <div id="loadingCard" class="card">
+
+        <div class="berry-icon">
+            🍓
+        </div>
+
+        <h2>
+            loading order...
+        </h2>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div id="errorCard" class="error hidden">
+
+        <div class="berry-icon">
+            🍓
+        </div>
+
+        <h2>
+            order not found
+        </h2>
+
+        <p id="errorMessage">
+            We couldn't find your order.
+        </p>
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='order.html'"
+        >
+            back to order ♡
+        </button>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <div id="paymentCard" class="card hidden">
+
+        <div class="berry-icon">
+            🍓
+        </div>
+
+        <h2>
+            pay with berry ♡
+        </h2>
+
+
+        <div class="balance-box">
+
+            <div class="balance-label">
+                your berry balance
+            </div>
+
+            <div class="balance-value">
+                <span id="balance">0</span> 🍓
+            </div>
+
+        </div>
+
+
+        <div class="order-box">
+
+            <div class="row">
+
+                <span class="label">
+                    order id
+                </span>
+
+                <span
+                    class="value"
+                    id="orderId"
+                ></span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    buyer
+                </span>
+
+                <span
+                    class="value"
+                    id="buyerName"
+                ></span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    category
+                </span>
+
+                <span
+                    class="value"
+                    id="category"
+                ></span>
+
+            </div>
+
+
+            <div
+                id="productDetails"
+                class="details"
+            ></div>
+
+        </div>
+
+
+        <div class="total-box">
+
+            <div class="total-label">
+                order total
+            </div>
+
+            <div class="total">
+                <span id="orderTotal">0</span>
+                🍓 Berry
+            </div>
+
+        </div>
+
+
+        <div class="remaining-box">
+
+            <div class="remaining-label">
+                remaining balance after payment
+            </div>
+
+            <div class="remaining">
+                <span id="remainingBalance">0</span>
+                🍓
+            </div>
+
+        </div>
+
+
+        <div
+            id="insufficientMessage"
+            class="insufficient hidden"
+        >
+            You don't have enough Berry to pay for this order.
+            Please top up your Berry first.
+        </div>
+
+
+        <button
+            id="payBtn"
+            disabled
+        >
+            request payment ♡
+        </button>
+
+
+        <button
+            id="cancelBtn"
+            class="back-btn"
+        >
+            cancel
+        </button>
+
+
+        <div class="note">
+
+            Your Berry will not be changed by this page.
+            A secure payment request will be sent for processing.
+
+        </div>
+
+    </div>
+
+
+    <!-- REQUEST SUCCESS -->
+
+    <div id="successCard" class="card success hidden">
+
+        <div class="success-icon">
+            🍓
+        </div>
+
+        <h2>
+            payment request sent! ♡
+        </h2>
+
+        <p>
+            Your Berry payment request has been recorded.
+            Please wait while Rosie Shop verifies and processes it.
+        </p>
+
+
+        <div class="order-id">
+
+            <strong>
+                order id
+            </strong>
+
+            <br>
+
+            <span id="successOrderId"></span>
+
+        </div>
+
+
+        <div class="request-box">
+
+            <strong>
+                payment request
+            </strong>
+
+            <br>
+
+            <span
+                id="paymentRequestId"
+                class="request-id"
+            ></span>
+
+        </div>
+
+
+        <div class="status">
+            awaiting payment processing
+        </div>
+
+
+        <button
+            onclick="window.location.href='account.html'"
+        >
+            view my account ♡
+        </button>
+
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='index.html'"
+        >
+            back to shop
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    get,
+    push,
+    set
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyC1DTja7wun0ziVdfgNiVupf1kCpDNl8hM",
+
+    authDomain:
+    "rosie-shop.firebaseapp.com",
+
+    databaseURL:
+    "https://rosie-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+    "rosie-shop",
+
+    storageBucket:
+    "rosie-shop.firebasestorage.app",
+
+    messagingSenderId:
+    "16582833070",
+
+    appId:
+    "1:16582833070:web:70db6fdcd4a111554e8e3f",
+
+    measurementId:
+    "G-46NPDYJNES"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getDatabase(app);
+
+const auth =
+getAuth(app);
+
+
+/* =========================
+   APPS SCRIPT
+========================= */
+
+const APPS_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbyIzl8D0VP2m_xT__Lwtl54dZsfeyK9kqnFN4SapABpyZEclXtVQAHgRDagZgAXfzGQ/exec";
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loadingCard =
+document.getElementById("loadingCard");
+
+const errorCard =
+document.getElementById("errorCard");
+
+const paymentCard =
+document.getElementById("paymentCard");
+
+const successCard =
+document.getElementById("successCard");
+
+const errorMessage =
+document.getElementById("errorMessage");
+
+const balanceEl =
+document.getElementById("balance");
+
+const orderIdEl =
+document.getElementById("orderId");
+
+const buyerNameEl =
+document.getElementById("buyerName");
+
+const categoryEl =
+document.getElementById("category");
+
+const productDetailsEl =
+document.getElementById("productDetails");
+
+const orderTotalEl =
+document.getElementById("orderTotal");
+
+const remainingBalanceEl =
+document.getElementById("remainingBalance");
+
+const insufficientMessage =
+document.getElementById("insufficientMessage");
+
+const payBtn =
+document.getElementById("payBtn");
+
+const cancelBtn =
+document.getElementById("cancelBtn");
+
+const successOrderId =
+document.getElementById("successOrderId");
+
+const paymentRequestId =
+document.getElementById("paymentRequestId");
+
+
+let currentUser = null;
+let currentOrder = null;
+let currentBalance = 0;
+
+
+/* =========================
+   ERROR
+========================= */
+
+function showError(message){
+
+    loadingCard.classList.add("hidden");
+
+    paymentCard.classList.add("hidden");
+
+    successCard.classList.add("hidden");
+
+    errorCard.classList.remove("hidden");
+
+    errorMessage.textContent =
+    message;
+
+}
+
+
+/* =========================
+   GET ORDER TOTAL
+========================= */
+
+function getOrderTotal(){
+
+    return Number(
+        currentOrder?.totalBerry ??
+        currentOrder?.berry ??
+        currentOrder?.price ??
+        0
+    );
+
+}
+
+
+/* =========================
+   LOAD ORDER
+========================= */
+
+async function loadOrder(){
+
+    const orderId =
+    localStorage.getItem("rosieOrderId");
+
+
+    if(!orderId){
+
+        showError(
+            "There is no pending order to pay."
+        );
+
+        return false;
+
+    }
+
+
+    try{
+
+        const orderRef =
+        ref(
+            db,
+            "orders/" + orderId
+        );
+
+        const snapshot =
+        await get(orderRef);
+
+
+        if(!snapshot.exists()){
+
+            showError(
+                "This order could not be found in Rosie Shop."
+            );
+
+            return false;
+
+        }
+
+
+        currentOrder =
+        snapshot.val();
+
+
+        if(
+            !currentUser ||
+            currentOrder.uid !== currentUser.uid
+        ){
+
+            showError(
+                "This order does not belong to your account."
+            );
+
+            return false;
+
+        }
+
+
+        if(
+            currentOrder.paymentStatus === "Paid"
+        ){
+
+            showError(
+                "This order has already been paid."
+            );
+
+            return false;
+
+        }
+
+
+        if(
+            currentOrder.status === "Payment Requested"
+        ){
+
+            showError(
+                "A Berry payment request already exists for this order."
+            );
+
+            return false;
+
+        }
+
+
+        displayOrder();
+
+        return true;
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            "Unable to load your order. Please try again."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================
+   LOAD BALANCE
+========================= */
+
+async function loadBalance(){
+
+    try{
+
+        const userRef =
+        ref(
+            db,
+            "users/" + currentUser.uid
+        );
+
+        const snapshot =
+        await get(userRef);
+
+
+        if(snapshot.exists()){
+
+            const userData =
+            snapshot.val();
+
+
+            currentBalance =
+            Number(
+                userData.berry ??
+                userData.berryBalance ??
+                0
+            );
+
+        }else{
+
+            currentBalance = 0;
+
+        }
+
+
+        displayBalance();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            "Unable to load your Berry balance."
+        );
+
+    }
+
+}
+
+
+/* =========================
+   DISPLAY ORDER
+========================= */
+
+function displayOrder(){
+
+    const total =
+    getOrderTotal();
+
+
+    orderIdEl.textContent =
+    currentOrder.orderId || "";
+
+
+    buyerNameEl.textContent =
+    currentOrder.buyerName || "";
+
+
+    categoryEl.textContent =
+    currentOrder.category || "";
+
+
+    productDetailsEl.textContent =
+    currentOrder.productDetails ||
+    "No additional details.";
+
+
+    orderTotalEl.textContent =
+    total.toLocaleString();
+
+
+    loadingCard.classList.add("hidden");
+
+    paymentCard.classList.remove("hidden");
+
+}
+
+
+/* =========================
+   DISPLAY BALANCE
+========================= */
+
+function displayBalance(){
+
+    const total =
+    getOrderTotal();
+
+
+    const remaining =
+    currentBalance - total;
+
+
+    balanceEl.textContent =
+    currentBalance.toLocaleString();
+
+
+    remainingBalanceEl.textContent =
+    Math.max(
+        remaining,
+        0
+    ).toLocaleString();
+
+
+    if(
+        total > 0 &&
+        currentBalance >= total
+    ){
+
+        payBtn.disabled = false;
+
+        insufficientMessage.classList.add(
+            "hidden"
+        );
+
+    }else{
+
+        payBtn.disabled = true;
+
+        insufficientMessage.classList.remove(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   SEND PAYMENT REQUEST
+========================= */
+
+async function requestBerryPayment(){
+
+    if(!currentUser){
+
+        alert(
+            "Please log in again."
+        );
+
+        window.location.href =
+        "login.html";
+
+        return;
+
+    }
+
+
+    if(!currentOrder){
+
+        alert(
+            "Order information is missing."
+        );
+
+        return;
+
+    }
+
+
+    const total =
+    getOrderTotal();
+
+
+    if(total <= 0){
+
+        alert(
+            "Invalid order Berry amount."
+        );
+
+        return;
+
+    }
+
+
+    if(currentBalance < total){
+
+        alert(
+            "You don't have enough Berry."
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+    confirm(
+        `Request payment of ${total.toLocaleString()} Berry for this order?`
+    );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    payBtn.disabled = true;
+
+    cancelBtn.disabled = true;
+
+    payBtn.textContent =
+    "sending request...";
+
+
+    try{
+
+        /*
+         IMPORTANT:
+
+         This page DOES NOT deduct Berry.
+
+         It only creates a payment request.
+
+         The actual Berry deduction must be
+         performed by trusted backend/admin
+         logic.
+        */
+
+
+        const requestRef =
+        push(
+            ref(db,"berryPaymentRequests")
+        );
+
+
+        const requestId =
+        requestRef.key;
+
+
+        const requestData = {
+
+            requestId:
+            requestId,
+
+            orderId:
+            currentOrder.orderId,
+
+            uid:
+            currentUser.uid,
+
+            buyerEmail:
+            currentUser.email || "",
+
+            buyerName:
+            currentOrder.buyerName || "",
+
+            category:
+            currentOrder.category || "",
+
+            productDetails:
+            currentOrder.productDetails || "",
+
+            amount:
+            total,
+
+            currency:
+            "Berry",
+
+            status:
+            "Pending",
+
+            createdAt:
+            new Date().toISOString()
+
+        };
+
+
+        /*
+         Save payment request.
+
+         Buyer can create the request,
+         but cannot approve it or change
+         the Berry balance.
+        */
+
+        await set(
+            requestRef,
+            requestData
+        );
+
+
+        /*
+         Try sending the request to
+         the existing Apps Script.
+
+         If Apps Script does not yet
+         support this action, the Firebase
+         request still exists.
+        */
+
+        try{
+
+            await fetch(
+                APPS_SCRIPT_URL,
+                {
+                    method:"POST",
+
+                    mode:"no-cors",
+
+                    headers:{
+                        "Content-Type":
+                        "text/plain;charset=utf-8"
+                    },
+
+                    body:
+                    JSON.stringify({
+
+                        type:
+                        "berry_payment_request",
+
+                        requestId:
+                        requestId,
+
+                        orderId:
+                        currentOrder.orderId,
+
+                        uid:
+                        currentUser.uid,
+
+                        buyerEmail:
+                        currentUser.email || "",
+
+                        buyerName:
+                        currentOrder.buyerName || "",
+
+                        amount:
+                        total,
+
+                        currency:
+                        "Berry",
+
+                        status:
+                        "Pending"
+
+                    })
+
+                }
+            );
+
+        }catch(scriptError){
+
+            console.warn(
+                "Apps Script request could not be sent:",
+                scriptError
+            );
+
+        }
+
+
+        /*
+         Do NOT update the order to Paid.
+
+         Do NOT deduct Berry.
+
+         The trusted backend must do those
+         actions after verification.
+        */
+
+
+        paymentCard.classList.add(
+            "hidden"
+        );
+
+        successCard.classList.remove(
+            "hidden"
+        );
+
+
+        successOrderId.textContent =
+        currentOrder.orderId;
+
+
+        paymentRequestId.textContent =
+        requestId;
+
+
+        payBtn.textContent =
+        "request payment ♡";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Payment request could not be created. Please try again."
+        );
+
+
+        payBtn.disabled = false;
+
+        cancelBtn.disabled = false;
+
+        payBtn.textContent =
+        "request payment ♡";
+
+    }
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+payBtn.addEventListener(
+    "click",
+    requestBerryPayment
+);
+
+
+cancelBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+        "account.html";
+
+    }
+);
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            showError(
+                "You need to log in before paying with Berry."
+            );
+
+            return;
+
+        }
+
+
+        currentUser =
+        user;
+
+
+        const orderLoaded =
+        await loadOrder();
+
+
+        if(orderLoaded){
+
+            await loadBalance();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

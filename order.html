@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rosie Shop | Order</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    color:#5a3947;
+    padding-bottom:40px;
+}
+
+header{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+header h1{
+    font-size:27px;
+    font-weight:700;
+}
+
+header p{
+    font-size:13px;
+    margin-top:4px;
+}
+
+nav{
+    background:white;
+    padding:12px 10px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+nav a{
+    text-decoration:none;
+    color:#d95b87;
+    font-size:12px;
+    font-weight:600;
+    padding:7px 10px;
+    border-radius:20px;
+}
+
+nav a:hover{
+    background:#ffe1ed;
+}
+
+.container{
+    max-width:650px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+h2{
+    color:#d95b87;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-top:14px;
+    margin-bottom:6px;
+    font-size:13px;
+    font-weight:600;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #f3c3d4;
+    border-radius:12px;
+    padding:11px 13px;
+    outline:none;
+    font-size:13px;
+    background:#fffafd;
+    color:#5a3947;
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#ff8fb1;
+}
+
+.category-section{
+    display:none;
+    margin-top:8px;
+}
+
+.notice{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:15px;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.total-box{
+    margin-top:18px;
+    background:#ffe5ef;
+    border-radius:14px;
+    padding:15px;
+    text-align:center;
+}
+
+.total-label{
+    font-size:12px;
+    color:#9b6376;
+}
+
+.total-value{
+    font-size:25px;
+    font-weight:700;
+    color:#d94f82;
+    margin-top:3px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    border:0;
+    border-radius:14px;
+    padding:13px;
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.login-warning{
+    text-align:center;
+    background:#fff;
+    border:1px solid #ffc5d8;
+    border-radius:18px;
+    padding:25px 18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.login-warning p{
+    font-size:13px;
+    line-height:1.6;
+}
+
+.login-btn{
+    display:inline-block;
+    text-decoration:none;
+    margin-top:15px;
+    background:#ff8fb1;
+    color:white;
+    padding:10px 20px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.small{
+    font-size:11px;
+    color:#9a7180;
+    margin-top:5px;
+}
+
+.hidden{
+    display:none;
+}
+
+#loading{
+    text-align:center;
+    font-size:13px;
+    color:#a66b80;
+    margin:15px 0;
+}
+
+
+/* =========================
+   ORDER PREVIEW
+========================= */
+
+.preview-card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.preview-card h2{
+    margin-bottom:18px;
+}
+
+.preview-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:10px 0;
+    border-bottom:1px solid #f6dce6;
+    font-size:13px;
+}
+
+.preview-row:last-child{
+    border-bottom:0;
+}
+
+.preview-label{
+    color:#9b7180;
+    font-weight:500;
+}
+
+.preview-value{
+    text-align:right;
+    font-weight:600;
+    color:#5a3947;
+    word-break:break-word;
+}
+
+.preview-details{
+    background:#fff6fa;
+    border:1px solid #f5d5e1;
+    border-radius:12px;
+    padding:12px;
+    margin-top:15px;
+    font-size:12px;
+    line-height:1.7;
+    white-space:pre-line;
+}
+
+.preview-total{
+    background:#ffe5ef;
+    border-radius:14px;
+    padding:16px;
+    margin-top:18px;
+    text-align:center;
+}
+
+.preview-total small{
+    display:block;
+    color:#9b6376;
+    font-size:11px;
+}
+
+.preview-total strong{
+    display:block;
+    color:#d94f82;
+    font-size:25px;
+    margin-top:3px;
+}
+
+.back-btn{
+    background:white;
+    color:#d95b87;
+    border:1px solid #ffc5d8;
+}
+
+.confirm-btn{
+    background:linear-gradient(135deg,#ff7fa9,#ffafd3);
+}
+
+.warning-text{
+    font-size:11px;
+    color:#9a7180;
+    text-align:center;
+    margin-top:12px;
+    line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>rosie shop ♡</h1>
+    <p>order form</p>
+</header>
+
+<nav>
+    <a href="index.html">home</a>
+    <a href="account.html">account</a>
+    <a href="mlbb.html">mlbb</a>
+    <a href="roblox.html">roblox</a>
+    <a href="gbdata.html">gb/data</a>
+    <a href="promoload.html">promo load</a>
+    <a href="premium.html">premium</a>
+</nav>
+
+
+<div class="container">
+
+    <!-- LOGIN WARNING -->
+
+    <div id="loginWarning" class="login-warning hidden">
+
+        <p>
+            you need to log in first before placing an order ♡
+        </p>
+
+        <a href="login.html" class="login-btn">
+            log in
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         ORDER FORM
+    ========================== -->
+
+    <div id="orderFormCard" class="card hidden">
+
+        <h2>place your order ♡</h2>
+
+        <div class="notice">
+            Please make sure all information is correct before reviewing your order.
+            Your order will be paid using Berry.
+        </div>
+
+
+        <form id="orderForm">
+
+            <!-- CATEGORY -->
+
+            <label for="category">
+                Category
+            </label>
+
+            <select id="category" required>
+
+                <option value="">
+                    select category
+                </option>
+
+                <option value="mlbb">
+                    MLBB
+                </option>
+
+                <option value="load promo">
+                    Load Promo
+                </option>
+
+                <option value="gb">
+                    GB / Data
+                </option>
+
+                <option value="premium account">
+                    Premium Account
+                </option>
+
+                <option value="roblox">
+                    Roblox
+                </option>
+
+            </select>
+
+
+            <!-- =========================
+                 MLBB
+            ========================== -->
+
+            <div id="mlbbSection" class="category-section">
+
+                <label>
+                    Telegram Username
+                </label>
+
+                <input
+                    type="text"
+                    id="mlbbTg"
+                    placeholder="@username"
+                >
+
+
+                <label>
+                    MLBB ID
+                </label>
+
+                <input
+                    type="text"
+                    id="mlbbId"
+                    placeholder="123456789"
+                >
+
+
+                <label>
+                    Server
+                </label>
+
+                <input
+                    type="text"
+                    id="server"
+                    placeholder="1234"
+                >
+
+
+                <label>
+                    IGN
+                </label>
+
+                <input
+                    type="text"
+                    id="ign"
+                    placeholder="In-game name"
+                >
+
+
+                <label>
+                    MLBB Order
+                </label>
+
+                <input
+                    type="text"
+                    id="mlbbOrder"
+                    placeholder="Example: Starlight / Diamonds / Gift"
+                >
+
+
+                <label>
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    id="mlbbQuantity"
+                    min="1"
+                    value="1"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 LOAD PROMO
+            ========================== -->
+
+            <div id="loadSection" class="category-section">
+
+                <label>
+                    Network
+                </label>
+
+                <select id="loadNetwork">
+
+                    <option value="">
+                        select network
+                    </option>
+
+                    <option>Smart</option>
+                    <option>TNT</option>
+                    <option>Sun</option>
+                    <option>Globe</option>
+                    <option>TM</option>
+                    <option>DITO</option>
+                    <option>GOMO</option>
+
+                </select>
+
+
+                <label>
+                    Mobile Number
+                </label>
+
+                <input
+                    type="text"
+                    id="loadNumber"
+                    placeholder="09xxxxxxxxx"
+                >
+
+
+                <label>
+                    Promo / Load
+                </label>
+
+                <input
+                    type="text"
+                    id="loadPromo"
+                    placeholder="Enter promo or load"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 GB DATA
+            ========================== -->
+
+            <div id="gbSection" class="category-section">
+
+                <label>
+                    Network
+                </label>
+
+                <select id="gbNetwork">
+
+                    <option value="">
+                        select network
+                    </option>
+
+                    <option>Smart</option>
+                    <option>TNT</option>
+                    <option>Sun</option>
+                    <option>Globe</option>
+                    <option>TM</option>
+                    <option>DITO</option>
+                    <option>GOMO</option>
+
+                </select>
+
+
+                <label>
+                    Mobile Number
+                </label>
+
+                <input
+                    type="text"
+                    id="gbNumber"
+                    placeholder="09xxxxxxxxx"
+                >
+
+
+                <label>
+                    GB / Data Amount
+                </label>
+
+                <input
+                    type="text"
+                    id="gbAmount"
+                    placeholder="Example: 10GB"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 PREMIUM
+            ========================== -->
+
+            <div id="premiumSection" class="category-section">
+
+                <label>
+                    Telegram Username
+                </label>
+
+                <input
+                    type="text"
+                    id="premiumTg"
+                    placeholder="@username"
+                >
+
+
+                <label>
+                    Facebook Profile Link
+                </label>
+
+                <input
+                    type="text"
+                    id="fbLink"
+                    placeholder="Facebook profile link"
+                >
+
+
+                <label>
+                    Premium Order
+                </label>
+
+                <input
+                    type="text"
+                    id="premiumOrder"
+                    placeholder="Example: Netflix / Disney / HBO"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 ROBLOX
+            ========================== -->
+
+            <div id="robloxSection" class="category-section">
+
+                <div class="notice">
+
+                    Roblox orders are processed through Telegram.
+                    Please contact the official admin for your Roblox order.
+
+                </div>
+
+                <a
+                    href="https://t.me/rosievnqr"
+                    target="_blank"
+                    style="
+                    display:block;
+                    text-align:center;
+                    text-decoration:none;
+                    background:#ff8fb1;
+                    color:white;
+                    padding:11px;
+                    border-radius:12px;
+                    font-size:13px;
+                    font-weight:600;
+                    "
+                >
+                    contact rosie shop admin
+                </a>
+
+            </div>
+
+
+            <!-- =========================
+                 BUYER
+            ========================== -->
+
+            <label for="buyerName">
+                Buyer Name
+            </label>
+
+            <input
+                type="text"
+                id="buyerName"
+                placeholder="Your name"
+                required
+            >
+
+
+            <!-- =========================
+                 BERRY
+            ========================== -->
+
+            <div class="total-box">
+
+                <div class="total-label">
+                    order total
+                </div>
+
+                <div class="total-value">
+                    <span id="berryAmount">0</span> 🍓 Berry
+                </div>
+
+            </div>
+
+
+            <label for="price">
+                Berry Amount
+            </label>
+
+            <input
+                type="number"
+                id="price"
+                min="1"
+                step="1"
+                placeholder="Enter Berry amount"
+                required
+            >
+
+            <div class="small">
+                Enter the Berry price for this order.
+            </div>
+
+
+            <!-- NOTES -->
+
+            <label for="notes">
+                Notes
+            </label>
+
+            <textarea
+                id="notes"
+                placeholder="Additional instructions..."
+            ></textarea>
+
+
+            <button
+                type="submit"
+                id="reviewBtn"
+            >
+                review order ♡
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- =========================
+         ORDER PREVIEW
+    ========================== -->
+
+    <div id="previewCard" class="preview-card hidden">
+
+        <h2>order preview ♡</h2>
+
+
+        <div class="preview-row">
+
+            <span class="preview-label">
+                buyer
+            </span>
+
+            <span
+                class="preview-value"
+                id="previewBuyer"
+            ></span>
+
+        </div>
+
+
+        <div class="preview-row">
+
+            <span class="preview-label">
+                category
+            </span>
+
+            <span
+                class="preview-value"
+                id="previewCategory"
+            ></span>
+
+        </div>
+
+
+        <div
+            id="previewDetails"
+            class="preview-details"
+        ></div>
+
+
+        <div class="preview-row">
+
+            <span class="preview-label">
+                notes
+            </span>
+
+            <span
+                class="preview-value"
+                id="previewNotes"
+            ></span>
+
+        </div>
+
+
+        <div class="preview-total">
+
+            <small>
+                total to pay
+            </small>
+
+            <strong>
+                <span id="previewBerry">0</span>
+                🍓 Berry
+            </strong>
+
+        </div>
+
+
+        <p class="warning-text">
+
+            Please check your order carefully.
+            After confirming, you will be taken to the Berry payment page.
+
+        </p>
+
+
+        <button
+            type="button"
+            class="confirm-btn"
+            id="confirmOrderBtn"
+        >
+            confirm order ♡
+        </button>
+
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+        >
+            edit order
+        </button>
+
+
+        <div id="loading" class="hidden">
+            processing your order...
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    push,
+    set
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyC1DTja7wun0ziVdfgNiVupf1kCpDNl8hM",
+
+    authDomain:
+    "rosie-shop.firebaseapp.com",
+
+    databaseURL:
+    "https://rosie-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+    "rosie-shop",
+
+    storageBucket:
+    "rosie-shop.firebasestorage.app",
+
+    messagingSenderId:
+    "16582833070",
+
+    appId:
+    "1:16582833070:web:70db6fdcd4a111554e8e3f",
+
+    measurementId:
+    "G-46NPDYJNES"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getDatabase(app);
+
+const auth =
+getAuth(app);
+
+
+/* =========================
+   GOOGLE APPS SCRIPT
+========================= */
+
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxqnyzozz9FnXYajOfeNlmbOOqQ5IIYjtc1GozTUG3_hrkGmBBSf7Vn6nYvqNaMUYfu/exec";
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loginWarning =
+document.getElementById("loginWarning");
+
+const orderFormCard =
+document.getElementById("orderFormCard");
+
+const previewCard =
+document.getElementById("previewCard");
+
+const orderForm =
+document.getElementById("orderForm");
+
+const reviewBtn =
+document.getElementById("reviewBtn");
+
+const confirmOrderBtn =
+document.getElementById("confirmOrderBtn");
+
+const backBtn =
+document.getElementById("backBtn");
+
+const loading =
+document.getElementById("loading");
+
+const category =
+document.getElementById("category");
+
+const priceInput =
+document.getElementById("price");
+
+const berryAmount =
+document.getElementById("berryAmount");
+
+
+let currentUser = null;
+
+
+/* =========================
+   AUTH CHECK
+========================= */
+
+onAuthStateChanged(auth, (user) => {
+
+    currentUser = user;
+
+    if(user){
+
+        loginWarning.classList.add("hidden");
+
+        orderFormCard.classList.remove("hidden");
+
+    }else{
+
+        loginWarning.classList.remove("hidden");
+
+        orderFormCard.classList.add("hidden");
+
+        previewCard.classList.add("hidden");
+
+    }
+
+});
+
+
+/* =========================
+   CATEGORY SECTIONS
+========================= */
+
+const sections = {
+
+    "mlbb":
+    document.getElementById("mlbbSection"),
+
+    "load promo":
+    document.getElementById("loadSection"),
+
+    "gb":
+    document.getElementById("gbSection"),
+
+    "premium account":
+    document.getElementById("premiumSection"),
+
+    "roblox":
+    document.getElementById("robloxSection")
+
+};
+
+
+category.addEventListener("change", () => {
+
+    Object.values(sections).forEach(section => {
+
+        section.style.display = "none";
+
+    });
+
+
+    if(sections[category.value]){
+
+        sections[category.value].style.display =
+        "block";
+
+    }
+
+});
+
+
+/* =========================
+   BERRY DISPLAY
+========================= */
+
+priceInput.addEventListener("input", () => {
+
+    const amount =
+    Number(priceInput.value) || 0;
+
+    berryAmount.textContent =
+    amount.toLocaleString();
+
+});
+
+
+/* =========================
+   PRODUCT DETAILS
+========================= */
+
+function getProductDetails(){
+
+    const selectedCategory =
+    category.value;
+
+
+    if(selectedCategory === "mlbb"){
+
+        return `TG: ${document.getElementById("mlbbTg").value.trim()}
+MLBB ID: ${document.getElementById("mlbbId").value.trim()}
+Server: ${document.getElementById("server").value.trim()}
+IGN: ${document.getElementById("ign").value.trim()}
+Order: ${document.getElementById("mlbbOrder").value.trim()}
+Quantity: ${document.getElementById("mlbbQuantity").value}`;
+
+    }
+
+
+    if(selectedCategory === "load promo"){
+
+        return `Network: ${document.getElementById("loadNetwork").value}
+Number: ${document.getElementById("loadNumber").value.trim()}
+Promo: ${document.getElementById("loadPromo").value.trim()}`;
+
+    }
+
+
+    if(selectedCategory === "gb"){
+
+        return `Network: ${document.getElementById("gbNetwork").value}
+Number: ${document.getElementById("gbNumber").value.trim()}
+Amount: ${document.getElementById("gbAmount").value.trim()}`;
+
+    }
+
+
+    if(selectedCategory === "premium account"){
+
+        return `TG: ${document.getElementById("premiumTg").value.trim()}
+Facebook: ${document.getElementById("fbLink").value.trim()}
+Premium: ${document.getElementById("premiumOrder").value.trim()}`;
+
+    }
+
+
+    if(selectedCategory === "roblox"){
+
+        return "Roblox order — contact admin through Telegram.";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================
+   REVIEW ORDER
+========================= */
+
+orderForm.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+
+
+    if(!currentUser){
+
+        alert(
+            "Please log in first before placing an order."
+        );
+
+        window.location.href =
+        "login.html";
+
+        return;
+
+    }
+
+
+    const selectedCategory =
+    category.value;
+
+
+    if(!selectedCategory){
+
+        alert(
+            "Please select a category."
+        );
+
+        return;
+
+    }
+
+
+    const berry =
+    Number(priceInput.value);
+
+
+    if(!berry || berry <= 0){
+
+        alert(
+            "Please enter a valid Berry amount."
+        );
+
+        return;
+
+    }
+
+
+    /* BUILD PREVIEW */
+
+    document.getElementById("previewBuyer")
+        .textContent =
+        document.getElementById("buyerName")
+        .value.trim();
+
+
+    document.getElementById("previewCategory")
+        .textContent =
+        selectedCategory;
+
+
+    document.getElementById("previewDetails")
+        .textContent =
+        getProductDetails();
+
+
+    document.getElementById("previewNotes")
+        .textContent =
+        document.getElementById("notes")
+        .value.trim() || "None";
+
+
+    document.getElementById("previewBerry")
+        .textContent =
+        berry.toLocaleString();
+
+
+    orderFormCard.classList.add("hidden");
+
+    previewCard.classList.remove("hidden");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+
+/* =========================
+   BACK / EDIT
+========================= */
+
+backBtn.addEventListener("click", () => {
+
+    previewCard.classList.add("hidden");
+
+    orderFormCard.classList.remove("hidden");
+
+});
+
+
+/* =========================
+   CONFIRM ORDER
+========================= */
+
+confirmOrderBtn.addEventListener("click", async () => {
+
+    if(!currentUser){
+
+        alert(
+            "Your login session has expired. Please log in again."
+        );
+
+        window.location.href =
+        "login.html";
+
+        return;
+
+    }
+
+
+    const selectedCategory =
+    category.value;
+
+
+    const berry =
+    Number(priceInput.value);
+
+
+    if(!berry || berry <= 0){
+
+        alert(
+            "Invalid Berry amount."
+        );
+
+        return;
+
+    }
+
+
+    confirmOrderBtn.disabled = true;
+
+    backBtn.disabled = true;
+
+    loading.classList.remove("hidden");
+
+
+    try{
+
+        /* =========================
+           CREATE ORDER
+        ========================= */
+
+        const ordersRef =
+        ref(db,"orders");
+
+        const newOrder =
+        push(ordersRef);
+
+        const orderId =
+        newOrder.key;
+
+
+        const buyerName =
+        document.getElementById("buyerName")
+        .value.trim();
+
+
+        const notes =
+        document.getElementById("notes")
+        .value.trim();
+
+
+        const productDetails =
+        getProductDetails();
+
+
+        const orderData = {
+
+            orderId: orderId,
+
+            uid: currentUser.uid,
+
+            buyerEmail:
+            currentUser.email || "",
+
+            buyerName:
+            buyerName,
+
+            category:
+            selectedCategory,
+
+            productDetails:
+            productDetails,
+
+            berry:
+            berry,
+
+            price:
+            berry,
+
+            totalBerry:
+            berry,
+
+            currency:
+            "Berry",
+
+            notes:
+            notes,
+
+            paymentStatus:
+            "Unpaid",
+
+            status:
+            "Awaiting Berry Payment",
+
+            createdAt:
+            new Date().toISOString()
+
+        };
+
+
+        await set(
+            newOrder,
+            orderData
+        );
+
+
+        /* =========================
+           SAVE ORDER LOCALLY
+        ========================= */
+
+        localStorage.setItem(
+            "rosieOrderId",
+            orderId
+        );
+
+
+        localStorage.setItem(
+            "rosieOrderBerry",
+            String(berry)
+        );
+
+
+        localStorage.setItem(
+            "rosieOrderCategory",
+            selectedCategory
+        );
+
+
+        /* =========================
+           SEND TO GOOGLE SHEETS
+        ========================= */
+
+        try{
+
+            await fetch(
+
+                GOOGLE_SCRIPT_URL,
+
+                {
+
+                    method:"POST",
+
+                    mode:"no-cors",
+
+                    headers:{
+                        "Content-Type":
+                        "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        orderId:
+                        orderId,
+
+                        product:
+                        selectedCategory,
+
+                        uid:
+                        currentUser.uid,
+
+                        buyerName:
+                        buyerName,
+
+                        quantity:
+                        document.getElementById(
+                            "mlbbQuantity"
+                        )?.value || "1",
+
+                        total:
+                        berry,
+
+                        currency:
+                        "Berry",
+
+                        paymentStatus:
+                        "Unpaid",
+
+                        status:
+                        "Awaiting Berry Payment"
+
+                    })
+
+                }
+
+            );
+
+        }catch(sheetError){
+
+            console.log(
+                "Google Sheets error:",
+                sheetError
+            );
+
+        }
+
+
+        /* =========================
+           GO TO BERRY PAYMENT
+        ========================= */
+
+        window.location.href =
+        "berry.html";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Something went wrong while creating your order. Please try again."
+        );
+
+        confirmOrderBtn.disabled = false;
+
+        backBtn.disabled = false;
+
+        loading.classList.add("hidden");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

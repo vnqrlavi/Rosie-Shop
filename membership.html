@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rosie Shop | Berry VIP Membership</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    color:#5a3947;
+}
+
+header{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+}
+
+header h1{
+    font-size:28px;
+}
+
+header p{
+    font-size:13px;
+    margin-top:5px;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+h2{
+    color:#d95b87;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:6px;
+    font-size:13px;
+    font-weight:600;
+}
+
+input{
+    width:100%;
+    border:1px solid #f3c3d4;
+    border-radius:12px;
+    padding:12px;
+    font-size:13px;
+    background:#fffafd;
+}
+
+input:focus{
+    outline:none;
+    border-color:#ff8fb1;
+}
+
+.notice{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:12px;
+    padding:12px;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.benefits{
+    line-height:2;
+    font-size:13px;
+}
+
+.payment-box{
+    background:#fffafd;
+    border:1px solid #f3c3d4;
+    border-radius:12px;
+    padding:15px;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.note-box{
+    background:#ffe5ef;
+    border-radius:12px;
+    padding:12px;
+    margin-top:10px;
+    font-size:12px;
+    line-height:1.8;
+}
+
+button{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:13px;
+    margin-top:18px;
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.95;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:#d95b87;
+    margin-top:12px;
+    font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>berry vip 🎀</h1>
+    <p>membership application</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>apply for berry vip ♡</h2>
+
+        <form id="vipForm">
+
+            <label>Email Address</label>
+            <input
+                type="email"
+                id="email"
+                required
+            >
+
+            <label>Username</label>
+            <input
+                type="text"
+                id="username"
+                required
+            >
+
+            <label>Telegram Username</label>
+            <input
+                type="text"
+                id="telegram"
+                placeholder="@username"
+            >
+
+            <button
+                type="submit"
+                id="applyButton"
+            >
+                apply now ♡
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="card">
+
+        <h2>membership benefits</h2>
+
+        <div class="benefits">
+
+            ✓ +15 Berry Welcome Bonus 🍓<br>
+            ✓ Discounted Game Credits<br>
+            ✓ Discounted Member Prices<br>
+            ✓ Member Incentives<br>
+            ✓ Voucher Eligibility<br>
+            ✓ Exclusive Promotions<br>
+            ✓ Access to Selected VIP Offers
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>payment instructions</h2>
+
+        <div class="payment-box">
+
+            Membership Fee: <strong>₱20</strong>
+
+            <br><br>
+
+            Payment Method:
+
+            <br>
+            (Insert your payment details here)
+
+        </div>
+
+        <div class="note-box">
+
+            <strong>PLEASE PUT THIS IN YOUR PAYMENT NOTE:</strong>
+
+            <br><br>
+
+            vip - yourusername
+
+            <br><br>
+
+            Example:
+
+            <br>
+
+            vip - rosie123
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="notice">
+
+            Please note: Some products or services may be delivered privately for security and confidentiality purposes.
+
+            <br><br>
+
+            They may be delivered through the email address or Telegram username you provide.
+
+            <br><br>
+
+            Usernames must be unique. Duplicate usernames are not allowed.
+
+            <br><br>
+
+            After submitting your application, your VIP request will be placed under review.
+
+            <br><br>
+
+            Once approved, Rosie Shop will contact you through your provided email address or Telegram account.
+
+        </div>
+
+        <a href="index.html" class="back-btn">
+            ← back to home
+        </a>
+
+    </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+import {
+    getDatabase,
+    ref,
+    push,
+    set
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyC1DTja7wun0ziVdfgNiVupf1kCpDNl8hM",
+    authDomain: "rosie-shop.firebaseapp.com",
+    databaseURL: "https://rosie-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "rosie-shop",
+    storageBucket: "rosie-shop.firebasestorage.app",
+    messagingSenderId: "16582833070",
+    appId: "1:16582833070:web:70db6fdcd4a111554e8e3f"
+};
+
+
+/* INITIALIZE FIREBASE */
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+
+/* CURRENT USER */
+
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+
+    currentUser = user;
+
+    const button = document.getElementById("applyButton");
+
+    if(user){
+
+        button.disabled = false;
+        button.textContent = "apply now ♡";
+
+    }else{
+
+        button.disabled = false;
+        button.textContent = "login required ♡";
+
+    }
+
+});
+
+
+/* VIP FORM */
+
+document.getElementById("vipForm").addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    if(!currentUser){
+
+        alert("Please login to your Rosie Shop account first.");
+        return;
+
+    }
+
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const telegram =
+        document.getElementById("telegram").value.trim();
+
+
+    if(!email || !username){
+
+        alert("Please complete the required fields.");
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById("applyButton");
+
+    button.disabled = true;
+    button.textContent = "submitting... ♡";
+
+
+    try{
+
+        const vipRef =
+            push(ref(db, "vipRequests"));
+
+
+        await set(vipRef, {
+
+            uid: currentUser.uid,
+
+            email: email,
+
+            username: username,
+
+            telegram: telegram,
+
+            status: "pending",
+
+            createdAt: Date.now()
+
+        });
+
+
+        alert("VIP request submitted! ♡");
+
+        document.getElementById("vipForm").reset();
+
+        button.disabled = false;
+        button.textContent = "apply now ♡";
+
+
+    }catch(error){
+
+        console.error("VIP submission error:", error);
+
+        alert(
+            "Unable to submit your VIP request.\n\n" +
+            error.message
+        );
+
+        button.disabled = false;
+        button.textContent = "apply now ♡";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

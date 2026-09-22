@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>rosie shop</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    color:#444;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* header */
+
+header{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    text-align:center;
+    padding:45px 20px;
+}
+
+header h1{
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+header p{
+    font-size:14px;
+}
+
+/* main */
+
+.container{
+    width:100%;
+    max-width:650px;
+    margin:auto;
+    padding:30px 15px;
+}
+
+/* menu buttons */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.menu a{
+    display:block;
+    background:white;
+    color:#ff6f9c;
+    text-decoration:none;
+    text-align:center;
+    padding:20px;
+    border-radius:20px;
+    font-size:16px;
+    font-weight:bold;
+    box-shadow:0 5px 18px rgba(255,111,156,.12);
+    transition:.2s;
+}
+
+.menu a:hover{
+    background:#ff8fb1;
+    color:white;
+    transform:translateY(-2px);
+}
+
+/* vip button */
+
+.vip-button{
+    border:2px solid #ff8fb1;
+}
+
+/* notice */
+
+.notice{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    margin-top:20px;
+    text-align:center;
+    box-shadow:0 5px 18px rgba(255,111,156,.12);
+}
+
+.notice h2{
+    color:#ff6f9c;
+    margin-bottom:10px;
+    font-size:18px;
+}
+
+.notice p{
+    margin-bottom:12px;
+}
+
+.telegram-btn{
+    display:inline-block;
+    background:#ff8fb1;
+    color:white;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+/* footer */
+
+footer{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    text-align:center;
+    padding:18px;
+    font-size:13px;
+    margin-top:auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>rosie shop 🎀</h1>
+
+    <p>simple • safe • convenient</p>
+
+</header>
+
+<div class="container">
+
+    <div class="menu">
+
+        <a href="login.html">
+            login
+        </a>
+
+        <a href="register.html">
+            register
+        </a>
+
+        <a href="membership.html" class="vip-button">
+            apply vip pass ♡
+        </a>
+
+        <a href="about.html">
+            about rosie shop
+        </a>
+
+    </div>
+
+    <div class="notice">
+
+        <h2>check more available products and services</h2>
+
+        <p>visit our telegram channel for more promos and updates</p>
+
+        <a class="telegram-btn"
+           href="https://t.me/rosievnqrshop"
+           target="_blank">
+            join telegram
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+
+    <p>© 2026 rosie shop</p>
+
+</footer>
+
+</body>
+</html>

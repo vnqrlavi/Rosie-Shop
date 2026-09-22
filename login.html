@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>rosie shop | login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    width:100%;
+    max-width:350px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 18px rgba(255,111,156,.12);
+}
+
+h2{
+    text-align:center;
+    color:#ff6f9c;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ffd1df;
+    border-radius:12px;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:20px;
+    background:#ff8fb1;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+a{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#ff6f9c;
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>login 🎀</h2>
+
+    <input
+        type="email"
+        id="email"
+        placeholder="email"
+        autocomplete="email"
+        required
+    >
+
+    <input
+        type="password"
+        id="password"
+        placeholder="password"
+        autocomplete="current-password"
+        required
+    >
+
+    <button id="loginBtn" onclick="login()">
+        login
+    </button>
+
+    <a href="register.html">
+        create account
+    </a>
+
+    <a href="index.html">
+        back to home
+    </a>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+
+/* ==========================
+   FIREBASE CONFIG
+========================== */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC1DTja7wun0ziVdfgNiVupf1kCpDNl8hM",
+  authDomain: "rosie-shop.firebaseapp.com",
+  databaseURL: "https://rosie-shop-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "rosie-shop",
+  storageBucket: "rosie-shop.firebasestorage.app",
+  messagingSenderId: "16582833070",
+  appId: "1:16582833070:web:70db6fdcd4a111554e8e3f",
+  measurementId: "G-46NPDYJNES"
+};
+      
+    
+/* ==========================
+   INITIALIZE FIREBASE
+========================== */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+/* ==========================
+   ADMIN UIDS
+========================== */
+
+const ADMIN_UIDS = [
+
+    "oWcw3nxslZNGp9izZOxcMvGzzOA3",
+
+    "JIw8R2ilJEYuxBgNPDOdk9HLkbp1"
+
+];
+
+
+/* ==========================
+   LOGIN
+========================== */
+
+window.login = async function(){
+
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+    const loginBtn =
+        document
+        .getElementById("loginBtn");
+
+
+    /* CHECK INPUT */
+
+    if(!email || !password){
+
+        alert(
+            "Please enter your email and password."
+        );
+
+        return;
+    }
+
+
+    /* DISABLE BUTTON */
+
+    loginBtn.disabled = true;
+
+    loginBtn.textContent = "logging in...";
+
+
+    try{
+
+        /* FIREBASE LOGIN */
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user =
+            userCredential.user;
+
+        const uid =
+            user.uid;
+
+
+        console.log(
+            "Logged in UID:",
+            uid
+        );
+
+
+        /* ==========================
+           ADMIN
+        ========================== */
+
+        if(
+            ADMIN_UIDS.includes(uid)
+        ){
+
+            alert(
+                "Admin login successful! 🎀"
+            );
+
+            window.location.replace(
+                "admin.html"
+            );
+
+            return;
+        }
+
+
+        /* ==========================
+           BUYER
+        ========================== */
+
+        alert(
+            "Login successful! Welcome to Rosie Shop 🎀"
+        );
+
+        window.location.replace("account.html");
+
+}catch(error){
+
+    console.error("Login error:", error);
+
+    alert("Error Code: " + error.code);
+    alert("Error Message: " + error.message);
+
+    let message = "Login failed. Please try again.";
+
+    if(error.code === "auth/invalid-credential"){
+        message = "Incorrect email or password.";
+    }
+    else if(error.code === "auth/user-not-found"){
+        message = "No account found with this email.";
+    }
+    else if(error.code === "auth/wrong-password"){
+        message = "Incorrect password.";
+    }
+    else if(error.code === "auth/invalid-email"){
+        message = "Please enter a valid email address.";
+    }
+
+    alert(message);
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = "login";
+
+}
+
+}; 
+
+
+/* ==========================
+   AUTH STATE CHECK
+========================== */
+
+onAuthStateChanged(
+    auth,
+    (user) => {
+
+        if(user){
+
+            console.log(
+                "Firebase Auth user:",
+                user.uid
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

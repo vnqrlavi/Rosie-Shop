@@ -1,0 +1,3189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rosie Shop | Admin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    color:#5c3445;
+}
+
+header{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    padding:25px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:26px;
+}
+
+header p{
+    font-size:13px;
+    opacity:.9;
+}
+
+.container{
+    max-width:1000px;
+    margin:20px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 5px 18px rgba(255,120,160,.15);
+}
+
+.card h2{
+    font-size:18px;
+    color:#d65b88;
+    margin-bottom:15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.stat{
+    background:#fff5f9;
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+}
+
+.stat strong{
+    display:block;
+    font-size:22px;
+    color:#d95787;
+}
+
+.stat span{
+    font-size:12px;
+    color:#977080;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #f1c5d6;
+    border-radius:10px;
+    outline:none;
+    margin-bottom:10px;
+    color:#5c3445;
+    background:#fffafb;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#ff8fb1;
+}
+
+button{
+    border:none;
+    border-radius:10px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn{
+    background:#ff8fb1;
+    color:white;
+}
+
+.btn:hover{
+    background:#ed7299;
+}
+
+.btn-green{
+    background:#8bcf9c;
+    color:white;
+}
+
+.btn-red{
+    background:#e98291;
+    color:white;
+}
+
+.btn-gray{
+    background:#eee;
+    color:#666;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.user,
+.request,
+.order,
+.payment-request{
+    border:1px solid #f5d7e2;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:10px;
+    background:#fffafb;
+}
+
+.user-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+}
+
+.user-email{
+    font-weight:600;
+    word-break:break-word;
+}
+
+.berry{
+    color:#d94f83;
+    font-weight:700;
+    margin:6px 0;
+}
+
+.small{
+    font-size:12px;
+    color:#967687;
+    margin-top:5px;
+    line-height:1.6;
+}
+
+.product{
+    background:#fff0f6;
+    border-radius:10px;
+    padding:10px;
+    margin-top:10px;
+    font-size:12px;
+    line-height:1.7;
+    word-break:break-word;
+}
+
+.status{
+    display:inline-block;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+}
+
+.pending{
+    background:#fff0bd;
+    color:#977100;
+}
+
+.approved{
+    background:#d9f5df;
+    color:#36824a;
+}
+
+.rejected{
+    background:#ffe0e4;
+    color:#a84552;
+}
+
+.processing{
+    background:#e4ddff;
+    color:#6848a8;
+}
+
+.completed{
+    background:#d9f5df;
+    color:#36824a;
+}
+
+.paid{
+    background:#d9f5df;
+    color:#36824a;
+}
+
+.unpaid{
+    background:#fff0bd;
+    color:#977100;
+}
+
+.active{
+    background:#d9f5df;
+    color:#36824a;
+}
+
+.not-member{
+    background:#eee;
+    color:#777;
+}
+
+.loading{
+    text-align:center;
+    color:#999;
+    padding:20px;
+}
+
+.empty{
+    text-align:center;
+    color:#999;
+    padding:15px;
+}
+
+.logout{
+    background:white;
+    color:#d65b88;
+    margin-top:10px;
+}
+
+.code{
+    background:#fff0f6;
+    border-radius:8px;
+    padding:8px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin:8px 0;
+}
+
+.berry-box{
+    display:flex;
+    gap:7px;
+    margin-top:10px;
+}
+
+.berry-box input{
+    margin-bottom:0;
+}
+
+.berry-box button{
+    white-space:nowrap;
+}
+
+.voucher-box{
+    background:#fff7fa;
+    border:1px solid #f5d7e2;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:10px;
+}
+
+.order-id{
+    font-weight:700;
+    color:#d95787;
+    word-break:break-word;
+}
+
+.vip-box{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:12px;
+    padding:10px;
+    margin-top:10px;
+}
+
+.vip-title{
+    color:#d95787;
+    font-weight:700;
+}
+
+.payment-box{
+    background:#fff7fa;
+    border:1px solid #f5d7e2;
+    border-radius:12px;
+    padding:12px;
+    margin-top:10px;
+}
+
+@media(max-width:700px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .user-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .actions{
+        width:100%;
+    }
+
+    .actions button{
+        flex:1;
+    }
+
+    .berry-box{
+        flex-direction:column;
+    }
+
+    .berry-box button{
+        width:100%;
+    }
+
+}
+
+@media(max-width:400px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>🍓 Rosie Shop Admin</h1>
+
+    <p>Berry Wallet & Shop Management</p>
+
+    <button class="logout" id="logoutBtn">
+        🚪 Logout
+    </button>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- DASHBOARD -->
+
+<div class="card">
+
+    <h2>♡ Dashboard</h2>
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong id="totalBuyers">0</strong>
+            <span>Buyers</span>
+        </div>
+
+        <div class="stat">
+            <strong id="totalBerry">0</strong>
+            <span>Total Berry</span>
+        </div>
+
+        <div class="stat">
+            <strong id="pendingTopups">0</strong>
+            <span>Pending Top-ups</span>
+        </div>
+
+        <div class="stat">
+            <strong id="totalOrders">0</strong>
+            <span>Orders</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PRICELIST -->
+
+<div class="card">
+
+    <h2>🛍️ Pricelist</h2>
+
+    <button
+        class="btn"
+        onclick="window.location.href='pricelist.html'">
+
+        🍓 Open Pricelist
+
+    </button>
+
+</div>
+
+
+<!-- BUYERS -->
+
+<div class="card">
+
+    <h2>👥 Buyers & VIP Status</h2>
+
+    <div id="buyersList">
+
+        <div class="loading">
+            Loading buyers...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- VIP REQUESTS -->
+
+<div class="card">
+
+    <h2>🍓 VIP Membership Requests</h2>
+
+    <div id="vipRequestsList">
+
+        <div class="loading">
+            Loading VIP requests...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- BERRY PAYMENT REQUESTS -->
+
+<div class="card">
+
+    <h2>🍓 Berry Payment Requests</h2>
+
+    <div id="berryPaymentsList">
+
+        <div class="loading">
+            Loading Berry payment requests...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOP UP REQUESTS -->
+
+<div class="card">
+
+    <h2>💰 Berry Top-up Requests</h2>
+
+    <div id="topupsList">
+
+        <div class="loading">
+            Loading top-up requests...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ORDERS -->
+
+<div class="card">
+
+    <h2>🛍️ Orders</h2>
+
+    <div id="ordersList">
+
+        <div class="loading">
+            Loading orders...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- VOUCHER CREATE -->
+
+<div class="card">
+
+    <h2>🎟️ Create Voucher</h2>
+
+    <input
+        type="text"
+        id="voucherCode"
+        placeholder="Voucher code e.g. ROSIE100"
+    >
+
+    <input
+        type="number"
+        id="voucherBerry"
+        placeholder="Berry amount"
+        min="1"
+    >
+
+    <button
+        class="btn"
+        id="createVoucherBtn">
+
+        🎟️ Create Voucher
+
+    </button>
+
+</div>
+
+
+<!-- VOUCHERS -->
+
+<div class="card">
+
+    <h2>🎟️ Vouchers</h2>
+
+    <div id="vouchersList">
+
+        <div class="loading">
+            Loading vouchers...
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+    getAuth,
+    signOut,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+import {
+    getDatabase,
+    ref,
+    onValue,
+    get,
+    update,
+    set,
+    push
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+
+/* ==========================================
+   FIREBASE
+========================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyC1DTja7wun0ziVdfgNiVupf1kCpDNl8hM",
+
+    authDomain:
+        "rosie-shop.firebaseapp.com",
+
+    databaseURL:
+        "https://rosie-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+        "rosie-shop",
+
+    storageBucket:
+        "rosie-shop.firebasestorage.app",
+
+    messagingSenderId:
+        "16582833070",
+
+    appId:
+        "1:16582833070:web:70db6fdcd4a111554e8e3f",
+
+    measurementId:
+        "G-46NPDYJNES"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const database = getDatabase(app);
+
+
+/* ==========================================
+   ADMIN UID
+========================================== */
+
+const ADMIN_UIDS = [
+
+    "oWcw3nxslZNGp9izZOxcMvGzzOA3",
+
+    "JIw8R2ilJEYuxBgNPDOdk9HLkbp1"
+
+];
+
+
+/* ==========================================
+   ADMIN AUTH CHECK
+========================================== */
+
+onAuthStateChanged(auth, (user) => {
+
+    if(!user){
+
+        window.location.replace("login.html");
+
+        return;
+
+    }
+
+    if(!ADMIN_UIDS.includes(user.uid)){
+
+        alert("Access denied.");
+
+        window.location.replace("account.html");
+
+        return;
+
+    }
+
+});
+
+
+/* ==========================================
+   BUYERS
+========================================== */
+
+onValue(
+    ref(database,"users"),
+    (snapshot) => {
+
+        const buyersList =
+            document.getElementById("buyersList");
+
+        buyersList.innerHTML = "";
+
+        let totalBuyers = 0;
+        let totalBerry = 0;
+
+
+        if(!snapshot.exists()){
+
+            buyersList.innerHTML =
+                '<div class="empty">No buyers found.</div>';
+
+            return;
+
+        }
+
+
+        snapshot.forEach((child) => {
+
+            const uid = child.key;
+
+            const user = child.val() || {};
+
+
+            if(ADMIN_UIDS.includes(uid)){
+
+                return;
+
+            }
+
+
+            totalBuyers++;
+
+
+            const currentBerry =
+                Number(
+                    user.berry ??
+                    user.berryBalance ??
+                    0
+                );
+
+
+            totalBerry += currentBerry;
+
+
+            const vipStatus =
+                String(
+                    user.vipStatus ||
+                    "not-member"
+                ).toLowerCase();
+
+
+            let vipText = "NOT A MEMBER";
+
+            let vipClass = "not-member";
+
+
+            if(vipStatus === "active"){
+
+                vipText = "ACTIVE";
+                vipClass = "active";
+
+            }
+
+            else if(vipStatus === "pending"){
+
+                vipText = "PENDING";
+                vipClass = "pending";
+
+            }
+
+            else if(vipStatus === "rejected"){
+
+                vipText = "REJECTED";
+                vipClass = "rejected";
+
+            }
+
+
+            const div =
+                document.createElement("div");
+
+            div.className = "user";
+
+
+            div.innerHTML = `
+
+                <div class="user-top">
+
+                    <div>
+
+                        <div class="user-email">
+
+                            ${escapeHTML(
+                                user.email ||
+                                "No Email"
+                            )}
+
+                        </div>
+
+                        <div class="small">
+
+                            ${escapeHTML(
+                                user.name ||
+                                user.username ||
+                                "Unnamed User"
+                            )}
+
+                        </div>
+
+                    </div>
+
+                    <div class="berry">
+
+                        🍓 ${currentBerry.toLocaleString()}
+                        Berry
+
+                    </div>
+
+                </div>
+
+
+                <div class="vip-box">
+
+                    <div class="vip-title">
+
+                        🍓 Berry VIP
+
+                    </div>
+
+                    <div class="small">
+
+                        Status:
+
+                        <span class="status ${vipClass}">
+
+                            ${vipText}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="berry-box">
+
+                    <input
+                        type="number"
+                        min="1"
+                        id="amount-${uid}"
+                        placeholder="Berry amount"
+                    >
+
+                    <button
+                        class="btn-green"
+                        onclick="addBerry('${uid}')"
+                    >
+
+                        ➕ Add
+
+                    </button>
+
+                    <button
+                        class="btn-red"
+                        onclick="deductBerry('${uid}')"
+                    >
+
+                        ➖ Deduct
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            buyersList.appendChild(div);
+
+        });
+
+
+        document.getElementById(
+            "totalBuyers"
+        ).textContent = totalBuyers;
+
+
+        document.getElementById(
+            "totalBerry"
+        ).textContent =
+            totalBerry.toLocaleString();
+
+    }
+);
+
+
+/* ==========================================
+   ADD BERRY
+========================================== */
+
+window.addBerry = async function(uid){
+
+    const input =
+        document.getElementById(
+            "amount-" + uid
+        );
+
+    const amount =
+        Number(input.value);
+
+
+    if(!amount || amount <= 0){
+
+        alert("Enter a valid Berry amount.");
+
+        return;
+
+    }
+
+
+    try{
+
+        const userRef =
+            ref(database,"users/" + uid);
+
+        const snapshot =
+            await get(userRef);
+
+
+        if(!snapshot.exists()){
+
+            alert("Buyer not found.");
+
+            return;
+
+        }
+
+
+        const user = snapshot.val();
+
+
+        const oldBerry =
+            Number(
+                user.berry ??
+                user.berryBalance ??
+                0
+            );
+
+
+        const newBerry =
+            oldBerry + amount;
+
+
+        await update(
+            userRef,
+            {
+                berry:newBerry
+            }
+        );
+
+
+        await createTransaction(
+            uid,
+            {
+                type:"admin_add",
+                amount:amount,
+                balance:newBerry,
+                admin:auth.currentUser.uid
+            }
+        );
+
+
+        input.value = "";
+
+        alert(
+            "Added " +
+            amount +
+            " Berry successfully!"
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Failed to add Berry.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   DEDUCT BERRY
+========================================== */
+
+window.deductBerry = async function(uid){
+
+    const input =
+        document.getElementById(
+            "amount-" + uid
+        );
+
+    const amount =
+        Number(input.value);
+
+
+    if(!amount || amount <= 0){
+
+        alert("Enter a valid Berry amount.");
+
+        return;
+
+    }
+
+
+    try{
+
+        const userRef =
+            ref(database,"users/" + uid);
+
+        const snapshot =
+            await get(userRef);
+
+
+        if(!snapshot.exists()){
+
+            alert("Buyer not found.");
+
+            return;
+
+        }
+
+
+        const user = snapshot.val();
+
+
+        const oldBerry =
+            Number(
+                user.berry ??
+                user.berryBalance ??
+                0
+            );
+
+
+        if(amount > oldBerry){
+
+            alert(
+                "The buyer only has " +
+                oldBerry +
+                " Berry."
+            );
+
+            return;
+
+        }
+
+
+        const newBerry =
+            oldBerry - amount;
+
+
+        await update(
+            userRef,
+            {
+                berry:newBerry
+            }
+        );
+
+
+        await createTransaction(
+            uid,
+            {
+                type:"admin_deduct",
+                amount:-amount,
+                balance:newBerry,
+                admin:auth.currentUser.uid
+            }
+        );
+
+
+        input.value = "";
+
+        alert(
+            "Deducted " +
+            amount +
+            " Berry successfully!"
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Failed to deduct Berry.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   VIP MEMBERSHIP REQUESTS
+========================================== */
+
+onValue(
+    ref(database,"vipRequests"),
+    (snapshot) => {
+
+        const list =
+            document.getElementById(
+                "vipRequestsList"
+            );
+
+        list.innerHTML = "";
+
+
+        if(!snapshot.exists()){
+
+            list.innerHTML =
+                '<div class="empty">No VIP membership requests.</div>';
+
+            return;
+
+        }
+
+
+        let found = false;
+
+
+        snapshot.forEach((child) => {
+
+            const requestId = child.key;
+
+            const request = child.val() || {};
+
+
+            const status =
+                String(
+                    request.status || "pending"
+                ).toLowerCase();
+
+
+            /*
+              Show pending requests here.
+              Previously processed requests remain
+              in Firebase but disappear from the
+              pending admin list.
+            */
+
+            if(
+                status !== "pending"
+            ){
+
+                return;
+
+            }
+
+
+            found = true;
+
+
+            const div =
+                document.createElement("div");
+
+            div.className = "request";
+
+
+            div.innerHTML = `
+
+                <div class="order-id">
+
+                    🍓 Berry VIP Application
+
+                </div>
+
+                <div class="small">
+
+                    Request ID:
+                    ${escapeHTML(requestId)}
+
+                </div>
+
+                <div class="small">
+
+                    Username:
+                    <strong>
+                        ${escapeHTML(
+                            request.username ||
+                            "No username"
+                        )}
+                    </strong>
+
+                </div>
+
+                <div class="small">
+
+                    Email:
+                    ${escapeHTML(
+                        request.email ||
+                        "No email"
+                    )}
+
+                </div>
+
+                <div class="small">
+
+                    Telegram:
+                    ${escapeHTML(
+                        request.telegram ||
+                        "Not provided"
+                    )}
+
+                </div>
+
+                <div class="small">
+
+                    UID:
+                    ${escapeHTML(
+                        request.uid ||
+                        "No UID"
+                    )}
+
+                </div>
+
+                <div class="small">
+
+                    Status:
+
+                    <span class="status pending">
+                        PENDING
+                    </span>
+
+                </div>
+
+                <div class="small">
+
+                    ${
+                        request.createdAt
+                        ?
+                        new Date(
+                            request.createdAt
+                        ).toLocaleString()
+                        :
+                        ""
+                    }
+
+                </div>
+
+                <div class="actions"
+                     style="margin-top:10px;">
+
+                    <button
+                        class="btn-green"
+                        onclick="approveVIP('${requestId}')"
+                    >
+
+                        ✓ Approve VIP
+
+                    </button>
+
+                    <button
+                        class="btn-red"
+                        onclick="rejectVIP('${requestId}')"
+                    >
+
+                        ✕ Reject
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(div);
+
+        });
+
+
+        if(!found){
+
+            list.innerHTML =
+                '<div class="empty">No pending VIP membership requests.</div>';
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   APPROVE VIP
+========================================== */
+
+window.approveVIP = async function(requestId){
+
+    try{
+
+        const requestRef =
+            ref(
+                database,
+                "vipRequests/" + requestId
+            );
+
+
+        const snapshot =
+            await get(requestRef);
+
+
+        if(!snapshot.exists()){
+
+            alert("VIP request not found.");
+
+            return;
+
+        }
+
+
+        const request =
+            snapshot.val();
+
+
+        if(
+            String(
+                request.status || ""
+            ).toLowerCase()
+            !== "pending"
+        ){
+
+            alert(
+                "This VIP request was already processed."
+            );
+
+            return;
+
+        }
+
+
+        const uid = request.uid;
+
+
+        if(!uid){
+
+            alert(
+                "This request has no buyer UID."
+            );
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                "Approve this Berry VIP membership?\n\n" +
+                "Username: " +
+                (
+                    request.username ||
+                    "Unknown"
+                )
+            );
+
+
+        if(!confirmed){
+
+            return;
+
+        }
+
+
+        /*
+          Update buyer VIP status
+        */
+
+        await update(
+            ref(
+                database,
+                "users/" + uid
+            ),
+            {
+
+                vipStatus:"active",
+
+                vipApprovedAt:
+                    Date.now(),
+
+                vipApprovedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        /*
+          Update application
+        */
+
+        await update(
+            requestRef,
+            {
+
+                status:"approved",
+
+                approvedAt:
+                    Date.now(),
+
+                approvedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        alert(
+            "Berry VIP approved successfully! 🍓"
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not approve VIP.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   REJECT VIP
+========================================== */
+
+window.rejectVIP = async function(requestId){
+
+    const confirmed =
+        confirm(
+            "Reject this Berry VIP application?"
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    try{
+
+        const requestRef =
+            ref(
+                database,
+                "vipRequests/" + requestId
+            );
+
+
+        const snapshot =
+            await get(requestRef);
+
+
+        if(!snapshot.exists()){
+
+            alert(
+                "VIP request not found."
+            );
+
+            return;
+
+        }
+
+
+        const request =
+            snapshot.val();
+
+
+        await update(
+            requestRef,
+            {
+
+                status:"rejected",
+
+                rejectedAt:
+                    Date.now(),
+
+                rejectedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        if(request.uid){
+
+            await update(
+                ref(
+                    database,
+                    "users/" +
+                    request.uid
+                ),
+                {
+
+                    vipStatus:"rejected",
+
+                    vipRejectedAt:
+                        Date.now(),
+
+                    vipRejectedBy:
+                        auth.currentUser.uid
+
+                }
+            );
+
+        }
+
+
+        alert(
+            "VIP application rejected."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not reject VIP.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   BERRY PAYMENT REQUESTS
+========================================== */
+
+const berryPaymentPaths = [
+    "berryPaymentRequests",
+    "berryPayments"
+];
+
+
+function listenToBerryPayments(){
+
+    const list =
+        document.getElementById(
+            "berryPaymentsList"
+        );
+
+    list.innerHTML =
+        '<div class="loading">Loading Berry payment requests...</div>';
+
+
+    let completed = false;
+
+
+    function tryPath(index){
+
+        if(index >= berryPaymentPaths.length){
+
+            if(!completed){
+
+                list.innerHTML =
+                    '<div class="empty">No Berry payment requests found.</div>';
+
+            }
+
+            return;
+
+        }
+
+
+        const path =
+            berryPaymentPaths[index];
+
+
+        onValue(
+            ref(database,path),
+            (snapshot) => {
+
+                if(!snapshot.exists()){
+
+                    tryPath(index + 1);
+
+                    return;
+
+                }
+
+
+                completed = true;
+
+                renderBerryPayments(snapshot,path);
+
+            },
+            {
+                onlyOnce:true
+            }
+        );
+
+    }
+
+
+    tryPath(0);
+
+}
+
+
+function renderBerryPayments(
+    snapshot,
+    path
+){
+
+    const list =
+        document.getElementById(
+            "berryPaymentsList"
+        );
+
+    list.innerHTML = "";
+
+
+    let found = false;
+
+
+    snapshot.forEach((child) => {
+
+        const paymentId = child.key;
+
+        const payment = child.val() || {};
+
+
+        const status =
+            String(
+                payment.status ||
+                "pending"
+            ).toLowerCase();
+
+
+        if(
+            status !== "pending"
+        ){
+
+            return;
+
+        }
+
+
+        found = true;
+
+
+        const amount =
+            Number(
+                payment.amount ||
+                payment.berry ||
+                payment.berryAmount ||
+                0
+            );
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "payment-request";
+
+
+        div.innerHTML = `
+
+            <div class="order-id">
+
+                🍓 Berry Payment Request
+
+            </div>
+
+            <div class="small">
+
+                Request ID:
+                ${escapeHTML(paymentId)}
+
+            </div>
+
+            <div class="small">
+
+                Buyer:
+                ${escapeHTML(
+                    payment.username ||
+                    payment.buyerEmail ||
+                    payment.email ||
+                    payment.uid ||
+                    "Unknown"
+                )}
+
+            </div>
+
+            <div class="berry">
+
+                🍓 ${amount.toLocaleString()} Berry
+
+            </div>
+
+            <div class="payment-box">
+
+                <div class="small">
+
+                    Payment Method:
+                    ${escapeHTML(
+                        payment.paymentMethod ||
+                        payment.method ||
+                        "Not specified"
+                    )}
+
+                </div>
+
+                <div class="small">
+
+                    Reference:
+                    ${escapeHTML(
+                        payment.referenceNumber ||
+                        payment.reference ||
+                        "No reference"
+                    )}
+
+                </div>
+
+                <div class="small">
+
+                    Note:
+                    ${escapeHTML(
+                        payment.note ||
+                        "No note"
+                    )}
+
+                </div>
+
+            </div>
+
+            <div class="actions"
+                 style="margin-top:10px;">
+
+                <button
+                    class="btn-green"
+                    onclick="completeBerryPayment('${path}','${paymentId}')"
+                >
+
+                    ✓ Payment Complete
+
+                </button>
+
+                <button
+                    class="btn-red"
+                    onclick="rejectBerryPayment('${path}','${paymentId}')"
+                >
+
+                    ✕ Reject Payment
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        list.appendChild(div);
+
+    });
+
+
+    if(!found){
+
+        list.innerHTML =
+            '<div class="empty">No pending Berry payment requests.</div>';
+
+    }
+
+}
+
+
+/* ==========================================
+   COMPLETE BERRY PAYMENT
+========================================== */
+
+window.completeBerryPayment =
+async function(path,paymentId){
+
+    try{
+
+        const paymentRef =
+            ref(
+                database,
+                path + "/" + paymentId
+            );
+
+
+        const snapshot =
+            await get(paymentRef);
+
+
+        if(!snapshot.exists()){
+
+            alert(
+                "Payment request not found."
+            );
+
+            return;
+
+        }
+
+
+        const payment =
+            snapshot.val();
+
+
+        if(
+            String(
+                payment.status ||
+                ""
+            ).toLowerCase()
+            !== "pending"
+        ){
+
+            alert(
+                "This payment was already processed."
+            );
+
+            return;
+
+        }
+
+
+        const uid =
+            payment.uid;
+
+
+        const amount =
+            Number(
+                payment.amount ||
+                payment.berry ||
+                payment.berryAmount ||
+                0
+            );
+
+
+        if(!uid){
+
+            alert(
+                "Payment has no buyer UID."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !amount ||
+            amount <= 0
+        ){
+
+            alert(
+                "Invalid Berry amount."
+            );
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                "Mark this Berry payment as complete?\n\n" +
+                amount +
+                " Berry"
+            );
+
+
+        if(!confirmed){
+
+            return;
+
+        }
+
+
+        const userRef =
+            ref(
+                database,
+                "users/" + uid
+            );
+
+
+        const userSnapshot =
+            await get(userRef);
+
+
+        if(!userSnapshot.exists()){
+
+            alert(
+                "Buyer account not found."
+            );
+
+            return;
+
+        }
+
+
+        const user =
+            userSnapshot.val();
+
+
+        const oldBerry =
+            Number(
+                user.berry ??
+                user.berryBalance ??
+                0
+            );
+
+
+        const newBerry =
+            oldBerry + amount;
+
+
+        await update(
+            userRef,
+            {
+                berry:newBerry
+            }
+        );
+
+
+        await update(
+            paymentRef,
+            {
+
+                status:"completed",
+
+                completedAt:
+                    Date.now(),
+
+                completedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        await createTransaction(
+            uid,
+            {
+
+                type:"berry_payment",
+
+                amount:amount,
+
+                balance:newBerry,
+
+                paymentId:paymentId,
+
+                admin:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        alert(
+            "Berry payment completed!\n\n" +
+            amount +
+            " Berry added."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not complete payment.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   REJECT BERRY PAYMENT
+========================================== */
+
+window.rejectBerryPayment =
+async function(path,paymentId){
+
+    const confirmed =
+        confirm(
+            "Reject this Berry payment?"
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    try{
+
+        await update(
+            ref(
+                database,
+                path + "/" + paymentId
+            ),
+            {
+
+                status:"rejected",
+
+                rejectedAt:
+                    Date.now(),
+
+                rejectedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        alert(
+            "Berry payment rejected."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not reject payment.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   TOP-UP REQUESTS
+========================================== */
+
+onValue(
+    ref(database,"topupRequests"),
+    (snapshot) => {
+
+        const list =
+            document.getElementById(
+                "topupsList"
+            );
+
+        list.innerHTML = "";
+
+        let pending = 0;
+
+
+        if(!snapshot.exists()){
+
+            list.innerHTML =
+                '<div class="empty">No top-up requests.</div>';
+
+            document.getElementById(
+                "pendingTopups"
+            ).textContent = "0";
+
+            return;
+
+        }
+
+
+        snapshot.forEach((child) => {
+
+            const requestId = child.key;
+
+            const request = child.val() || {};
+
+
+            if(
+                String(
+                    request.status || ""
+                ).toLowerCase()
+                !== "pending"
+            ){
+
+                return;
+
+            }
+
+
+            pending++;
+
+
+            const amount =
+                Number(
+                    request.amount ||
+                    request.berry ||
+                    0
+                );
+
+
+            const div =
+                document.createElement("div");
+
+            div.className = "request";
+
+
+            div.innerHTML = `
+
+                <div class="order-id">
+                    🍓 Top-up Request
+                </div>
+
+                <div class="small">
+                    Request ID:
+                    ${escapeHTML(requestId)}
+                </div>
+
+                <div class="small">
+                    Buyer:
+                    ${escapeHTML(
+                        request.buyerEmail ||
+                        request.email ||
+                        "No Email"
+                    )}
+                </div>
+
+                <div class="berry">
+                    🍓 ${amount.toLocaleString()} Berry
+                </div>
+
+                <div class="small">
+                    Payment Method:
+                    ${escapeHTML(
+                        request.paymentMethod ||
+                        "Not specified"
+                    )}
+                </div>
+
+                <div class="small">
+                    Reference:
+                    ${escapeHTML(
+                        request.referenceNumber ||
+                        "No reference"
+                    )}
+                </div>
+
+                <div class="small">
+
+                    Status:
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                </div>
+
+                <div class="actions"
+                     style="margin-top:10px;">
+
+                    <button
+                        class="btn-green"
+                        onclick="approveTopup('${requestId}')"
+                    >
+                        ✓ Approve
+                    </button>
+
+                    <button
+                        class="btn-red"
+                        onclick="rejectTopup('${requestId}')"
+                    >
+                        ✕ Reject
+                    </button>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(div);
+
+        });
+
+
+        if(pending === 0){
+
+            list.innerHTML =
+                '<div class="empty">No pending requests.</div>';
+
+        }
+
+
+        document.getElementById(
+            "pendingTopups"
+        ).textContent = pending;
+
+    }
+);
+
+
+/* ==========================================
+   APPROVE TOP-UP
+========================================== */
+
+window.approveTopup =
+async function(requestId){
+
+    try{
+
+        const requestRef =
+            ref(
+                database,
+                "topupRequests/" +
+                requestId
+            );
+
+
+        const requestSnapshot =
+            await get(requestRef);
+
+
+        if(!requestSnapshot.exists()){
+
+            alert("Request not found.");
+
+            return;
+
+        }
+
+
+        const request =
+            requestSnapshot.val();
+
+
+        if(
+            String(
+                request.status || ""
+            ).toLowerCase()
+            !== "pending"
+        ){
+
+            alert(
+                "This request was already processed."
+            );
+
+            return;
+
+        }
+
+
+        const uid = request.uid;
+
+
+        if(!uid){
+
+            alert(
+                "This request has no buyer UID."
+            );
+
+            return;
+
+        }
+
+
+        const userRef =
+            ref(
+                database,
+                "users/" + uid
+            );
+
+
+        const userSnapshot =
+            await get(userRef);
+
+
+        if(!userSnapshot.exists()){
+
+            alert(
+                "Buyer account not found."
+            );
+
+            return;
+
+        }
+
+
+        const user =
+            userSnapshot.val();
+
+
+        const oldBerry =
+            Number(
+                user.berry ??
+                user.berryBalance ??
+                0
+            );
+
+
+        const amount =
+            Number(
+                request.amount ??
+                request.berry ??
+                0
+            );
+
+
+        if(
+            !amount ||
+            amount <= 0
+        ){
+
+            alert(
+                "Invalid Berry amount."
+            );
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                "Approve this top-up?\n\n" +
+                "Amount: " +
+                amount +
+                " Berry"
+            );
+
+
+        if(!confirmed){
+
+            return;
+
+        }
+
+
+        const newBerry =
+            oldBerry + amount;
+
+
+        await update(
+            userRef,
+            {
+                berry:newBerry
+            }
+        );
+
+
+        await update(
+            requestRef,
+            {
+
+                status:"approved",
+
+                approvedAt:
+                    Date.now(),
+
+                approvedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        await createTransaction(
+            uid,
+            {
+
+                type:"topup",
+
+                amount:amount,
+
+                balance:newBerry,
+
+                requestId:requestId,
+
+                admin:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        alert(
+            "Top-up approved!\n\n" +
+            amount +
+            " Berry added."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not approve top-up.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   REJECT TOP-UP
+========================================== */
+
+window.rejectTopup =
+async function(requestId){
+
+    if(
+        !confirm(
+            "Reject this Berry top-up request?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        await update(
+            ref(
+                database,
+                "topupRequests/" +
+                requestId
+            ),
+            {
+
+                status:"rejected",
+
+                rejectedAt:
+                    Date.now(),
+
+                rejectedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        alert(
+            "Top-up rejected."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not reject request.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   ORDERS
+========================================== */
+
+onValue(
+    ref(database,"orders"),
+    (snapshot) => {
+
+        const list =
+            document.getElementById(
+                "ordersList"
+            );
+
+        list.innerHTML = "";
+
+        let count = 0;
+
+
+        if(!snapshot.exists()){
+
+            list.innerHTML =
+                '<div class="empty">No orders yet.</div>';
+
+            document.getElementById(
+                "totalOrders"
+            ).textContent = "0";
+
+            return;
+
+        }
+
+
+        const orders = [];
+
+
+        snapshot.forEach((child) => {
+
+            orders.push({
+
+                id:child.key,
+
+                data:child.val() || {}
+
+            });
+
+        });
+
+
+        orders.reverse();
+
+
+        orders.forEach((item) => {
+
+            const order =
+                item.data;
+
+
+            count++;
+
+
+            const orderId =
+                order.orderId ||
+                item.id;
+
+
+            const berry =
+                Number(
+                    order.totalBerry ??
+                    order.berry ??
+                    order.price ??
+                    0
+                );
+
+
+            const paymentStatus =
+                order.paymentStatus ||
+                "Unpaid";
+
+
+            const status =
+                order.status ||
+                "Pending";
+
+
+            let paymentClass = "unpaid";
+
+
+            if(
+                String(
+                    paymentStatus
+                ).toLowerCase()
+                === "paid"
+            ){
+
+                paymentClass = "paid";
+
+            }
+
+
+            const div =
+                document.createElement("div");
+
+            div.className = "order";
+
+
+            div.innerHTML = `
+
+                <div class="order-id">
+
+                    🛍️ ${escapeHTML(orderId)}
+
+                </div>
+
+                <div class="small">
+
+                    Buyer:
+                    ${escapeHTML(
+                        order.buyerEmail ||
+                        order.email ||
+                        order.uid ||
+                        "Unknown"
+                    )}
+
+                </div>
+
+                <div class="small">
+
+                    Name:
+                    ${escapeHTML(
+                        order.buyerName ||
+                        "Unnamed"
+                    )}
+
+                </div>
+
+                <div class="small">
+
+                    Category:
+                    ${escapeHTML(
+                        order.category ||
+                        "Unknown"
+                    )}
+
+                </div>
+
+                <div class="product">
+
+                    ${formatProductDetails(
+                        order.productDetails
+                    )}
+
+                </div>
+
+                <div class="berry">
+
+                    🍓 ${berry.toLocaleString()} Berry
+
+                </div>
+
+                <div class="small">
+
+                    Payment:
+
+                    <span class="status ${paymentClass}">
+
+                        ${escapeHTML(
+                            paymentStatus
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="small">
+
+                    Order Status:
+
+                </div>
+
+
+                <select
+                    id="order-status-${item.id}"
+                    onchange="changeOrderStatus('${item.id}',this.value)"
+                >
+
+                    <option
+                        value="Pending"
+                        ${
+                            status === "Pending"
+                            ? "selected"
+                            : ""
+                        }
+                    >
+                        Pending
+                    </option>
+
+                    <option
+                        value="Processing"
+                        ${
+                            status === "Processing"
+                            ? "selected"
+                            : ""
+                        }
+                    >
+                        Processing
+                    </option>
+
+                    <option
+                        value="Completed"
+                        ${
+                            status === "Completed"
+                            ? "selected"
+                            : ""
+                        }
+                    >
+                        Completed
+                    </option>
+
+                    <option
+                        value="Rejected"
+                        ${
+                            status === "Rejected"
+                            ? "selected"
+                            : ""
+                        }
+                    >
+                        Rejected
+                    </option>
+
+                </select>
+
+
+                <div class="small">
+
+                    Current:
+
+                    <span class="status ${
+                        getStatusClass(status)
+                    }">
+
+                        ${escapeHTML(status)}
+
+                    </span>
+
+                </div>
+
+
+                <div class="small">
+
+                    ${
+                        order.createdAt
+                        ?
+                        new Date(
+                            order.createdAt
+                        ).toLocaleString()
+                        :
+                        ""
+                    }
+
+                </div>
+
+            `;
+
+
+            list.appendChild(div);
+
+        });
+
+
+        document.getElementById(
+            "totalOrders"
+        ).textContent = count;
+
+    }
+);
+
+
+/* ==========================================
+   CHANGE ORDER STATUS
+========================================== */
+
+window.changeOrderStatus =
+async function(orderId,status){
+
+    try{
+
+        await update(
+            ref(
+                database,
+                "orders/" + orderId
+            ),
+            {
+
+                status:status,
+
+                statusUpdatedAt:
+                    Date.now(),
+
+                statusUpdatedBy:
+                    auth.currentUser.uid
+
+            }
+        );
+
+
+        alert(
+            "Order status updated to " +
+            status +
+            "."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not update order status.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ==========================================
+   CREATE VOUCHER
+========================================== */
+
+document
+.getElementById("createVoucherBtn")
+.addEventListener(
+    "click",
+    async () => {
+
+        const codeInput =
+            document.getElementById(
+                "voucherCode"
+            );
+
+        const berryInput =
+            document.getElementById(
+                "voucherBerry"
+            );
+
+
+        const code =
+            codeInput.value
+            .trim()
+            .toUpperCase();
+
+
+        const berry =
+            Number(
+                berryInput.value
+            );
+
+
+        if(!code){
+
+            alert(
+                "Enter a voucher code."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !berry ||
+            berry <= 0
+        ){
+
+            alert(
+                "Enter a valid Berry amount."
+            );
+
+            return;
+
+        }
+
+
+        try{
+
+            const voucherRef =
+                ref(
+                    database,
+                    "vouchers/" + code
+                );
+
+
+            const existing =
+                await get(voucherRef);
+
+
+            if(existing.exists()){
+
+                alert(
+                    "That voucher code already exists."
+                );
+
+                return;
+
+            }
+
+
+            await set(
+                voucherRef,
+                {
+
+                    berry:berry,
+
+                    value:berry,
+
+                    used:false,
+
+                    createdAt:
+                        Date.now(),
+
+                    createdBy:
+                        auth.currentUser.uid
+
+                }
+            );
+
+
+            codeInput.value = "";
+
+            berryInput.value = "";
+
+
+            alert(
+                "Voucher created!\n\n" +
+                code +
+                " = " +
+                berry +
+                " Berry"
+            );
+
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Could not create voucher.\n\n" +
+                error.message
+            );
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   VOUCHERS
+========================================== */
+
+onValue(
+    ref(database,"vouchers"),
+    (snapshot) => {
+
+        const list =
+            document.getElementById(
+                "vouchersList"
+            );
+
+        list.innerHTML = "";
+
+
+        if(!snapshot.exists()){
+
+            list.innerHTML =
+                '<div class="empty">No vouchers created yet.</div>';
+
+            return;
+
+        }
+
+
+        snapshot.forEach((child) => {
+
+            const code =
+                child.key;
+
+            const voucher =
+                child.val() || {};
+
+
+            const used =
+                voucher.used === true;
+
+
+            const amount =
+                Number(
+                    voucher.berry ??
+                    voucher.value ??
+                    0
+                );
+
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "voucher-box";
+
+
+            div.innerHTML = `
+
+                <div class="code">
+
+                    🎟️ ${escapeHTML(code)}
+
+                </div>
+
+                <div class="berry">
+
+                    🍓 ${amount.toLocaleString()} Berry
+
+                </div>
+
+                <div class="small">
+
+                    Status:
+
+                    <span class="status ${
+                        used
+                        ? "rejected"
+                        : "approved"
+                    }">
+
+                        ${
+                            used
+                            ? "Used"
+                            : "Available"
+                        }
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(div);
+
+        });
+
+    }
+);
+
+
+/* ==========================================
+   TRANSACTION
+========================================== */
+
+async function createTransaction(
+    uid,
+    data
+){
+
+    const transactionRef =
+        push(
+            ref(
+                database,
+                "transactions/" + uid
+            )
+        );
+
+
+    await set(
+        transactionRef,
+        {
+
+            ...data,
+
+            createdAt:
+                Date.now()
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   PRODUCT DETAILS
+========================================== */
+
+function formatProductDetails(details){
+
+    if(!details){
+
+        return "No product details.";
+
+    }
+
+
+    if(typeof details === "string"){
+
+        return escapeHTML(details);
+
+    }
+
+
+    try{
+
+        return Object.entries(details)
+
+            .map(([key,value]) => {
+
+                return `
+                    <strong>
+                        ${escapeHTML(key)}
+                    </strong>:
+                    ${escapeHTML(value)}
+                `;
+
+            })
+
+            .join("<br>");
+
+    }catch(error){
+
+        return escapeHTML(
+            String(details)
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   STATUS CLASS
+========================================== */
+
+function getStatusClass(status){
+
+    const value =
+        String(status)
+        .toLowerCase();
+
+
+    if(value === "processing"){
+
+        return "processing";
+
+    }
+
+
+    if(value === "completed"){
+
+        return "completed";
+
+    }
+
+
+    if(value === "rejected"){
+
+        return "rejected";
+
+    }
+
+
+    return "pending";
+
+}
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+document
+.getElementById("logoutBtn")
+.addEventListener(
+    "click",
+    async () => {
+
+        try{
+
+            await signOut(auth);
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Could not log out."
+            );
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   START BERRY PAYMENT LISTENER
+========================================== */
+
+listenToBerryPayments();
+
+</script>
+
+</body>
+</html>

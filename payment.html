@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rosie Shop | Top Up Berry</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#fff0f6;
+    color:#5a3947;
+    padding-bottom:40px;
+}
+
+header{
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+header h1{
+    font-size:27px;
+    font-weight:700;
+}
+
+header p{
+    font-size:13px;
+    margin-top:4px;
+}
+
+nav{
+    background:white;
+    padding:12px 10px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+nav a{
+    text-decoration:none;
+    color:#d95b87;
+    font-size:12px;
+    font-weight:600;
+    padding:7px 10px;
+    border-radius:20px;
+}
+
+nav a:hover{
+    background:#ffe1ed;
+}
+
+.container{
+    max-width:650px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+h2{
+    color:#d95b87;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.berry-icon{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:5px;
+}
+
+.balance-box{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:15px;
+    padding:14px;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.balance-label{
+    font-size:11px;
+    color:#9b6376;
+}
+
+.balance{
+    color:#d94f82;
+    font-size:24px;
+    font-weight:700;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-size:13px;
+    font-weight:600;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #f3c3d4;
+    border-radius:12px;
+    padding:11px 13px;
+    outline:none;
+    font-size:13px;
+    background:#fffafd;
+    color:#5a3947;
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#ff8fb1;
+}
+
+.amount-box{
+    margin-top:18px;
+    background:#ffe5ef;
+    border-radius:15px;
+    padding:16px;
+    text-align:center;
+}
+
+.amount-label{
+    font-size:12px;
+    color:#9b6376;
+}
+
+.amount{
+    color:#d94f82;
+    font-size:28px;
+    font-weight:700;
+    margin-top:3px;
+}
+
+.payment-info{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:14px;
+    padding:14px;
+    margin-top:15px;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.payment-info strong{
+    color:#d95b87;
+}
+
+.notice{
+    background:#fffafd;
+    border:1px solid #f3d4df;
+    border-radius:12px;
+    padding:12px;
+    margin-top:15px;
+    font-size:11px;
+    line-height:1.7;
+    color:#916b79;
+}
+
+button{
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:13px;
+    margin-top:20px;
+    background:linear-gradient(135deg,#ff8fb1,#ffb6d9);
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.back-btn{
+    background:white;
+    color:#d95b87;
+    border:1px solid #ffc5d8;
+}
+
+.hidden{
+    display:none;
+}
+
+.login-warning,
+.success{
+    text-align:center;
+}
+
+.login-warning p,
+.success p{
+    font-size:13px;
+    line-height:1.7;
+}
+
+.login-btn{
+    display:inline-block;
+    text-decoration:none;
+    margin-top:15px;
+    background:#ff8fb1;
+    color:white;
+    padding:10px 20px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.request-id{
+    background:#fff0f6;
+    border:1px solid #ffc9db;
+    border-radius:12px;
+    padding:12px;
+    margin-top:18px;
+    font-size:12px;
+    word-break:break-all;
+}
+
+.status{
+    display:inline-block;
+    margin-top:12px;
+    padding:7px 14px;
+    border-radius:20px;
+    background:#ffe5ef;
+    color:#d94f82;
+    font-size:12px;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>rosie shop ♡</h1>
+    <p>berry top up</p>
+</header>
+
+<nav>
+    <a href="index.html">home</a>
+    <a href="account.html">account</a>
+    <a href="mlbb.html">mlbb</a>
+    <a href="roblox.html">roblox</a>
+    <a href="gbdata.html">gb/data</a>
+    <a href="promoload.html">promo load</a>
+    <a href="premium.html">premium</a>
+</nav>
+
+
+<div class="container">
+
+    <!-- LOGIN -->
+
+    <div id="loginWarning" class="card login-warning hidden">
+
+        <div class="berry-icon">
+            🍓
+        </div>
+
+        <h2>
+            login required
+        </h2>
+
+        <p>
+            Please log in before requesting a Berry top-up.
+        </p>
+
+        <a
+            href="login.html"
+            class="login-btn"
+        >
+            log in ♡
+        </a>
+
+    </div>
+
+
+    <!-- TOP UP FORM -->
+
+    <div id="topupCard" class="card hidden">
+
+        <div class="berry-icon">
+            🍓
+        </div>
+
+        <h2>
+            top up berry ♡
+        </h2>
+
+
+        <!-- CURRENT BALANCE -->
+
+        <div class="balance-box">
+
+            <div class="balance-label">
+                current balance
+            </div>
+
+            <div class="balance">
+                <span id="currentBalance">
+                    0
+                </span>
+                🍓
+            </div>
+
+        </div>
+
+
+        <!-- TOP UP AMOUNT -->
+
+        <div class="amount-box">
+
+            <div class="amount-label">
+                berry to receive
+            </div>
+
+            <div class="amount">
+                <span id="topupAmount">
+                    0
+                </span>
+                🍓
+            </div>
+
+        </div>
+
+
+        <label for="paymentMethod">
+            payment method
+        </label>
+
+        <select id="paymentMethod" required>
+
+            <option value="">
+                select payment method
+            </option>
+
+            <option value="GCash">
+                GCash
+            </option>
+
+            <option value="Maya">
+                Maya
+            </option>
+
+            <option value="Bank Transfer">
+                Bank Transfer
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+
+        <div class="payment-info">
+
+            <strong>payment instructions</strong>
+
+            <br><br>
+
+            Replace this section with your actual
+            payment details.
+
+            <br><br>
+
+            Example:
+
+            <br>
+            GCash: 09XX XXX XXXX
+            <br>
+            Name: Rosie Shop
+
+        </div>
+
+
+        <label for="referenceNumber">
+            payment reference number
+        </label>
+
+        <input
+            type="text"
+            id="referenceNumber"
+            placeholder="Enter your payment reference"
+        >
+
+
+        <label for="topupNote">
+            note
+        </label>
+
+        <textarea
+            id="topupNote"
+            placeholder="Optional note..."
+        ></textarea>
+
+
+        <div class="notice">
+
+            After submitting, your top-up request will be marked
+            <strong>Pending</strong>.
+
+            Berry will only be added after the payment has been
+            verified by Rosie Shop.
+
+        </div>
+
+
+        <button
+            id="submitBtn"
+        >
+            submit top up request ♡
+        </button>
+
+
+        <button
+            id="backBtn"
+            class="back-btn"
+        >
+            back to account
+        </button>
+
+    </div>
+
+
+    <!-- SUCCESS -->
+
+    <div id="successCard" class="card success hidden">
+
+        <div class="berry-icon">
+            🍓
+        </div>
+
+        <h2>
+            request submitted ♡
+        </h2>
+
+        <p>
+            Your Berry top-up request has been sent.
+            Please wait for payment verification.
+        </p>
+
+
+        <div class="request-id">
+
+            <strong>
+                request id
+            </strong>
+
+            <br>
+
+            <span id="requestId"></span>
+
+        </div>
+
+
+        <div class="status">
+            pending verification
+        </div>
+
+
+        <button
+            onclick="window.location.href='account.html'"
+        >
+            back to account ♡
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    get,
+    push,
+    set
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyC1DTja7wun0ziVdfgNiVupf1kCpDNl8hM",
+
+    authDomain:
+    "rosie-shop.firebaseapp.com",
+
+    databaseURL:
+    "https://rosie-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+    "rosie-shop",
+
+    storageBucket:
+    "rosie-shop.firebasestorage.app",
+
+    messagingSenderId:
+    "16582833070",
+
+    appId:
+    "1:16582833070:web:70db6fdcd4a111554e8e3f",
+
+    measurementId:
+    "G-46NPDYJNES"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getDatabase(app);
+
+const auth =
+getAuth(app);
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loginWarning =
+document.getElementById("loginWarning");
+
+const topupCard =
+document.getElementById("topupCard");
+
+const successCard =
+document.getElementById("successCard");
+
+const currentBalanceEl =
+document.getElementById("currentBalance");
+
+const topupAmountEl =
+document.getElementById("topupAmount");
+
+const paymentMethod =
+document.getElementById("paymentMethod");
+
+const referenceNumber =
+document.getElementById("referenceNumber");
+
+const topupNote =
+document.getElementById("topupNote");
+
+const submitBtn =
+document.getElementById("submitBtn");
+
+const backBtn =
+document.getElementById("backBtn");
+
+const requestIdEl =
+document.getElementById("requestId");
+
+
+let currentUser = null;
+let currentBalance = 0;
+let requestedAmount = 0;
+
+
+/* =========================
+   GET TOP UP AMOUNT
+========================= */
+
+const savedAmount =
+localStorage.getItem("rosieTopupAmount");
+
+if(savedAmount){
+
+    requestedAmount =
+    Number(savedAmount);
+
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            loginWarning.classList.remove("hidden");
+
+            topupCard.classList.add("hidden");
+
+            return;
+
+        }
+
+
+        currentUser =
+        user;
+
+
+        loginWarning.classList.add("hidden");
+
+        topupCard.classList.remove("hidden");
+
+
+        topupAmountEl.textContent =
+        requestedAmount.toLocaleString();
+
+
+        await loadBalance();
+
+    }
+);
+
+
+/* =========================
+   LOAD BALANCE
+========================= */
+
+async function loadBalance(){
+
+    try{
+
+        const userRef =
+        ref(
+            db,
+            "users/" +
+            currentUser.uid
+        );
+
+
+        const snapshot =
+        await get(userRef);
+
+
+        if(snapshot.exists()){
+
+            const data =
+            snapshot.val();
+
+
+            currentBalance =
+            Number(
+                data.berry ??
+                data.berryBalance ??
+                0
+            );
+
+        }else{
+
+            currentBalance = 0;
+
+        }
+
+
+        currentBalanceEl.textContent =
+        currentBalance.toLocaleString();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        currentBalanceEl.textContent =
+        "0";
+
+    }
+
+}
+
+
+/* =========================
+   SUBMIT TOP UP
+========================= */
+
+submitBtn.addEventListener(
+    "click",
+    async () => {
+
+        if(!currentUser){
+
+            alert(
+                "Please log in first."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !requestedAmount ||
+            requestedAmount <= 0
+        ){
+
+            alert(
+                "Invalid Berry top-up amount."
+            );
+
+            return;
+
+        }
+
+
+        const method =
+        paymentMethod.value;
+
+
+        if(!method){
+
+            alert(
+                "Please select a payment method."
+            );
+
+            return;
+
+        }
+
+
+        const reference =
+        referenceNumber.value.trim();
+
+
+        if(!reference){
+
+            alert(
+                "Please enter your payment reference number."
+            );
+
+            return;
+
+        }
+
+
+        submitBtn.disabled = true;
+
+        submitBtn.textContent =
+        "submitting...";
+
+
+        try{
+
+            /* =========================
+               CREATE TOP-UP REQUEST
+            ========================= */
+
+            const requestsRef =
+            ref(
+                db,
+                "topupRequests"
+            );
+
+
+            const newRequest =
+            push(requestsRef);
+
+
+            const requestId =
+            newRequest.key;
+
+
+            const requestData = {
+
+                requestId:
+                requestId,
+
+                uid:
+                currentUser.uid,
+
+                buyerEmail:
+                currentUser.email || "",
+
+                amount:
+                requestedAmount,
+
+                currency:
+                "Berry",
+
+                paymentMethod:
+                method,
+
+                referenceNumber:
+                reference,
+
+                note:
+                topupNote.value.trim(),
+
+                status:
+                "Pending",
+
+                createdAt:
+                new Date().toISOString()
+
+            };
+
+
+            await set(
+                newRequest,
+                requestData
+            );
+
+
+            /* =========================
+               SAVE REQUEST ID
+            ========================= */
+
+            localStorage.setItem(
+                "rosieTopupRequestId",
+                requestId
+            );
+
+
+            localStorage.removeItem(
+                "rosieTopupAmount"
+            );
+
+
+            localStorage.removeItem(
+                "rosieTopupUid"
+            );
+
+
+            localStorage.removeItem(
+                "rosieTopupEmail"
+            );
+
+
+            /* =========================
+               SHOW SUCCESS
+            ========================= */
+
+            topupCard.classList.add(
+                "hidden"
+            );
+
+            successCard.classList.remove(
+                "hidden"
+            );
+
+
+            requestIdEl.textContent =
+            requestId;
+
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Unable to submit your top-up request. Please try again."
+            );
+
+            submitBtn.disabled = false;
+
+            submitBtn.textContent =
+            "submit top up request ♡";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   BACK
+========================= */
+
+backBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+        "account.html";
+
+    }
+);
+
+</script>
+
+</body>
+</html>
